@@ -18,6 +18,9 @@ This vimrc automatically sources a `~/.vimrc`, if available.
 Make sure, the command to source `~/.vimrc` remains at the end of this vimrc,
 otherwise user-specific commands may be overwritten.
 
+**IMPORTANT:** If you store the vimrc as `~/.vimrc`, you have to remove the line
+that sources `~/.vimrc`, else there is a cyclic dependence!
+
 
 ### User-specific vimrc
 
