@@ -73,6 +73,7 @@ Used Plugins
 * Spell
 * Clang Complete
 * Alternate file
+* Taglist
 * VIm LaTeX Suite
 
 
