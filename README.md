@@ -58,7 +58,10 @@ Commands
 |----------------------------------|------------------------------------------------------------|
 | Untab2                           | replaces all tabs by 2 spaces                              |
 | Untab4                           | replaces all tabs by 4 spaces                              |
-| V                                | vertically resize the current window                       |
+| V <cols>                         | vertically resize the current window to <cols> columns     |
+| Ctags                            | creates a C    tags file for all files in the current directory (subdirectories included) |
+| Cpptags                          | creates a C++  tags file for all files in the current directory (subdirectories included) |
+| Ctags                            | creates a C#   tags file for all files in the current directory (subdirectories included) |
 
 
 Used Plugins
