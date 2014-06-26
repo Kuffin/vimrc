@@ -8,7 +8,7 @@ Features
 * lots of useful key short-cuts, Macros, Commands etc. (see below)
 * easily customizable
 * custom status-line
-* allows user-specific ~/.vimrc
+* allows user-specific `~/.vimrc`
 * allows project specific vimrc ;)
 
 
