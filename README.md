@@ -12,20 +12,27 @@ Features
 * allows project specific vimrc ;)
 
 
-Used Plugins
-------------
+### User-specific ~/.vimrc
 
-* Spell
-* Clang_Complete
+This vimrc automatically sources a `~/.vimrc`, if available.
+Make sure, the command to source `~/.vimrc` remains at the end of this vimrc,
+otherwise user-specific commands may be overwritten.
+
+
+### User-specific vimrc
+
+When **vim** starts, it auomatically sources the `.project.vim` file from the
+current directory, if available.  This allows you to adapt **vim** to specific
+projects.
 
 
 Keymap
 ------
 
-| Mode            | Keys              | Command                                                                   |
+| Mode            | Keys              | Effect                                                                    |
 |-----------------|-------------------|---------------------------------------------------------------------------|
-| n,i,v,c,o       | `Alt` + `Q`       | like `Esc`                                                                |
-| n,i             | `Alt` + `W`       | format the current line at the 80th column                                |
+| n,i,v,c,o       | `Alt` + `Q`       | like `Esc` (trust me, you will love this)                                 |
+| n,i             | `Alt` + `W`       | format the current line at the 80th column (like `gwgw`)                  |
 | i               | `Alt` + `F`       | file completion, like `Ctrl` + `X`, `Ctrl` + `F`                          |
 | n               | `Space`           | toggles between regular line numbering and hybrid mode                    |
 | n               | `Tab`             | switch to next tab                                                        |
@@ -42,3 +49,21 @@ Keymap
 | n               | `Alt` + `J`       | opens the tag list selection window                                       |
 | v               | `*`               | forward search for the marked text                                        |
 | v               | `#`               | backwards search for the marked text                                      |
+
+
+Commands
+--------
+
+| Command / Function               | Effect                                                     |
+|----------------------------------|------------------------------------------------------------|
+| Untab2                           | replaces all tabs by 2 spaces                              |
+| Untab4                           | replaces all tabs by 4 spaces                              |
+| V                                | vertically resize the current window                       |
+
+
+Used Plugins
+------------
+
+* Spell
+* Clang_Complete
+* Alternate file
