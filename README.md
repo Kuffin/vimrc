@@ -61,7 +61,7 @@ Commands
 | V <cols>                         | vertically resize the current window to <cols> columns     |
 | Ctags                            | creates a C    tags file for all files in the current directory (subdirectories included) |
 | Cpptags                          | creates a C++  tags file for all files in the current directory (subdirectories included) |
-| Ctags                            | creates a C#   tags file for all files in the current directory (subdirectories included) |
+| Cstags                           | creates a C#   tags file for all files in the current directory (subdirectories included) |
 
 
 Used Plugins
