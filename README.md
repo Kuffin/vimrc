@@ -74,3 +74,11 @@ Used Plugins
 * Clang Complete
 * Alternate file
 * VIm LaTeX Suite
+
+
+Screenshots
+-----------
+
+![Screenshot 1](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/1.png "Screenshot 1")
+![Screenshot 2](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/2.png "Screenshot 2")
+![Screenshot 3](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/3.png "Screenshot 3")
