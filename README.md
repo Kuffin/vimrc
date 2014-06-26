@@ -25,8 +25,7 @@ Keymap
 | Mode            | Keys              | Command                               |
 |-----------------|-------------------|---------------------------------------|
 | n,i,v,c,o       | `Alt` + `Q`       | like `Esc`                            |
-| n,i             | `Alt` + `W`       | format the current line at the 80th
-column |
+| n,i             | `Alt` + `W`       | format the current line at the 80th column |
 |                 |                   |                                       |
 |                 |                   |                                       |
 |                 |                   |                                       |
