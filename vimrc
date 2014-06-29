@@ -736,7 +736,12 @@ set makeprg=make\ -j4
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 augroup filetype
-  au! BufNewFile,BufRead *.c,*.cpp,*.cc,*.h,*.hpp set tabstop=2 set expandtab set softtabstop=2 set shiftwidth=2 set cindent
+  au! BufNewFile,BufRead *.c,*.cpp,*.cc,*.h,*.hpp
+  set tabstop=2
+  set expandtab
+  set softtabstop=2
+  set shiftwidth=2
+  set cindent
 augroup END
 
 "
