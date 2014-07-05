@@ -613,7 +613,7 @@ nnoremap <silent> <F6> :cl<CR>
 
 " <F12> - insert the current date and time
 inoremap <silent> <F12> <C-R>=strftime('%c')<CR>
-cnoremap <silent> <F12> <C-R>=strftime('%c')<Space><BS><CR>
+cnoremap <silent> <F12> <C-R>=strftime('%c')<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""

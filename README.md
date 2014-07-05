@@ -38,20 +38,23 @@ Keymap
 | n,i             | `Alt` + `W`       | format the current line at the 80th column (like `gwgw`)                  |
 | i               | `Alt` + `F`       | file completion, like `Ctrl` + `X`, `Ctrl` + `F`                          |
 | n               | `Space`           | toggles between regular line numbering and hybrid mode                    |
+| n               | `BackSpace`       | removes all trailing whitespaces                                          |
 | n               | `Tab`             | switch to next tab                                                        |
 | n               | `Shift` + `Tab`   | switch to previous tab                                                    |
-| n               | `Ctrl` + `P`      | same as `Ctrl` + `I` before remapping `Tab` (*not working*)               |
-| n               | `Ctrl` + `N`      | creates a new, empty tab                                                  |
-| n               | `Alt` + `N`       | splits the current window vertically and opens a file                     |
-| i,c             | `F3`              | inserts the current time and date                                         |
-| n               | `F8`              | removes all training whitespaces                                          |
-| n               | `F9`              | toggle the tag list plugin window                                         |
-| n               | `F12`             | prints compiler output, like `:cl`                                        |
+| n               | `Ctrl` + `N`      | creates a new tab, and prompts the file open dialog                       |
+| n               | `Alt` + `N`       | creates a new vertical window, and prompts the file open dialog           |
+| n               | `Ctrl` + `C`      | toggle comment for the current line/block                                 |
 | n               | `,t`              | opens the alternate file in a new tab                                     |
 | n               | `,v`              | vertically splits the current window and opens the alternate file         |
 | n               | `Alt` + `J`       | opens the tag list selection window                                       |
 | v               | `*`               | forward search for the marked text                                        |
 | v               | `#`               | backwards search for the marked text                                      |
+| i,c             | `F1`              | opens the VIm help                                                        |
+| n               | `F2`              | opens the NERD Tree (NERD Tree plugin needed)                             |
+| n               | `F3`              | toggles Spell on/off                                                      |
+| n               | `F5`              | toggles the Taglist window                                                |
+| n               | `F6`              | shows compiler messages                                                   |
+| n,i             | `F12`             | inserts the current date and time                                         |
 
 
 Commands
