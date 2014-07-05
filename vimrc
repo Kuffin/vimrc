@@ -122,11 +122,11 @@ set wildmenu
 set wildmode=longest
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Indentation rules
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Number of spaces a <TAB> counts for
 set tabstop=2
@@ -160,11 +160,11 @@ set autoindent
 " set matchtime 5
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Search properties
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Allow 'search next' to jump back to the beginning of the file if the end
 " was reached (equivalent for 'search previous').
@@ -184,11 +184,11 @@ set noignorecase
 " set smartcase
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " User-defined folding
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define where to create folds
 set fdm=manual
@@ -203,11 +203,11 @@ set fdn=3
 "set fdt=
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Spelling
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Disable spellchecking by default
 set nospell
@@ -216,21 +216,25 @@ set nospell
 set spelllang=en_US
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Vim auto completion
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set completeopt=menu,menuone,longest,preview
+
+" Limit popup menu height
+set pumheight=15
+
 au CursorMovedI,InsertLeave * if pumvisible() == 0|sil! pclose|endif
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Colors & Highlighting
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " When set to "dark", Vim will try to use colors that look good on a dark
 " background. When set to "light", Vim will try to use colors that look good
@@ -260,11 +264,11 @@ set background=dark
 "
 colorscheme default
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Solarized
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " This is set to 16 by default, meaning that Solarized will attempt to use the
 " standard 16 colors of your terminal emulator. You will need to set those
@@ -301,11 +305,11 @@ colorscheme default
 "g:solarized_visibility="low"
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Concealed feature configuration
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set conceallevel
 set cole=2
@@ -322,11 +326,11 @@ set cocu="nc"
 hi Conceal ctermbg=black ctermfg=white guibg=black guifg=white
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " User-defined highlighting
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Show search results in red with an underline and without background
 hi MatchParen ctermbg=red ctermfg=black guibg=red guifg=black
@@ -337,11 +341,12 @@ hi StatusLine ctermfg=brown
 hi StatusLineNC ctermfg=gray
 hi CursorColumn term=reverse ctermbg=1
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " User-defined statusline
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "recalculate the long line warning when idle and after saving
 autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
@@ -437,7 +442,7 @@ set statusline+=%#error#%l%*/%L                           " cursor line/total li
 set statusline+=\ %P                            " percent through file
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Format options
 "
@@ -454,15 +459,15 @@ set statusline+=\ %P                            " percent through file
 "           after hitting <ENTER> in Insert Mode.
 " t         Auto-wrap text using textwidth (does not apply to comments).
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set formatoptions=c,q,r
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " User-defined commands
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Toggles spell
 function! SpellToggle()
@@ -500,8 +505,18 @@ autocmd InsertLeave * :set relativenumber
 
 set relativenumber
 
+" Toggles Spell on/off
+function! SpellToggle()
+  if(&spell == 1)
+    set nospell
+  else
+    set spell
+  endif
+endfunc
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Custom keymaps
 "
@@ -534,7 +549,7 @@ set relativenumber
 "                       abbreviation already exists
 "       <special>   -   useful to suppress side effect when
 "                       mapping with <> notation for special
-"                       charachters
+"                       charachters such as digraphs, umlauts, or accent
 "
 " Key modifiers:
 "   Control     -   <C-key>
@@ -563,73 +578,96 @@ set relativenumber
 "   <PageUp>       page-up
 "   <PageDown>     page-down
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+""""""""""""""""""""""""""""""""""""""""
 " Alternative Escape key
+""""""""""""""""""""""""""""""""""""""""
+
 inoremap q <Esc>
 nnoremap q <Esc>
 vnoremap q <Esc>
 cnoremap q <Esc>
 onoremap q <Esc>
 
+
+""""""""""""""""""""""""""""""""""""""""
+" Function Keys
+""""""""""""""""""""""""""""""""""""""""
+
+" <F2>  - NERD Tree
+nnoremap <silent> <F2> :NERDTree<CR>
+
+" <F3>  - toggle spell on/off
+nnoremap <silent> <F3> :call SpellToggle()<CR>
+
+" <F5>  - toggle the tag list plugin window
+map <silent> <F5> :TlistUpdate<CR>:TlistToggle<CR>
+
+" <F6>  - show clang_complete quick fix
+"nnoremap <silent> <F6>
+
+" <F6>  - Show the compiler messages
+nnoremap <silent> <F6> :cl<CR>
+
+" <F12> - insert the current date and time
+inoremap <silent> <F12> <C-R>=strftime('%c')<CR>
+cnoremap <silent> <F12> <C-R>=strftime('%c')<Space><BS><CR>
+
+
+""""""""""""""""""""""""""""""""""""""""
 " Shortcut for arraging text to 'textwidth'
+""""""""""""""""""""""""""""""""""""""""
+
 nnoremap w gwgw
 inoremap w <C-o>gwgw<CR>
 xnoremap w gw
 
-" Map Vim's file name omni completion to Alt+F
-inoremap f <C-X><C-F>
 
-" Toggle spell on/off
-nnoremap <silent><special> <F2> :call NumberToggle()<CR>
-
-" Map toggle line numbers to <Space>
+" <Space> - toggle line number style
 nnoremap <Space> :call NumberToggle()<CR>
 
-" If pressing Tab in Normal Mode, cycle to the next tab.
-nnoremap <silent><special> <Tab> :tabnext<CR>
+" <BS> - Remove all trailing whitespaces
+nnoremap <silent> <BS> :DeleteTrailingWs<CR>
 
-" If pressing Shift+Tab in Normal Mode, cycle to the previous tab.
-nnoremap <silent><special> <S-Tab> :tabprevious<CR>
+" <A-F> - Vim's file name completion
+inoremap f <C-X><C-F>
 
-" Pressing Ctrl+P now has the same behavior as Ctrl-I had.
+" If pressing Tab in Normal Mode, cycle to the next tab
+nnoremap <silent> <Tab> :tabnext<CR>
+
+" If pressing Shift+Tab in Normal Mode, cycle to the previous tab
+nnoremap <silent> <S-Tab> :tabprevious<CR>
+
+" Pressing Ctrl+P now has the same behavior as Ctrl-I had
 " FIXME: not working as expected
-nnoremap <silent><special> <C-P> g,
+"nnoremap <silent> <C-P> g,
 
-" Pressing Ctrl+N in Normal Mode will go to the command line and print the new
-" tab command.
-nnoremap <special> <C-N> :tabnew <C-D>
+" <C-N> - create a new tab and prompt file open dialog
+nnoremap <C-N> :tabnew <C-D>
 
-" Pressing Alt+N in Normal Mode will go to the command line and print the new
-" tab command.
+" <A-N> - create new vertical window and prompt file open dialog
 nnoremap n <C-W>v<C-W>l:edit <C-D>
 
-" Maps the F3 key to insert the current date and time
-inoremap <silent><special> <F3> <C-R>=strftime('%c')<CR>
-
-" Maps the F3 key to insert the current date and time
-cnoremap <silent><special> <F3> <C-R>=strftime('%c')<CR>
-
-" Remove all trailing whitespaces
-nnoremap <silent><special> <F8> :DeleteTrailingWs<CR>
-
-" Show the list of compiler statements
-nnoremap <silent><special> <F12> :cl<CR>
-
-" If pressing F9 , toggle the tag list plugin window
-map <silent> <F9> :TlistUpdate<CR>:TlistToggle<CR>
-
-" Pressing  ,t  will open the alternate file in a new tab.
+" ,t  - open the alternate file in a new tab
 nnoremap <silent> ,t :AT<CR>
 
-" Pressing  ,v  will open the alternate file in a new vertical window.
+" ,t  - open the alternate file in a new vertical window
 nnoremap <silent> ,v :AV<CR>
 
-" Open tag list selection menu
+" ,c  - toggle comment (uses NERD_commenter)
+nnoremap <silent> <C-C> :call NERDComment(0, "toggle")<CR>
+vnoremap <silent> <C-C> <ESC>:call NERDComment(1, "toggle")<CR>
+
+" <A-J> - Open tag list selection menu
 nnoremap j :tselect <C-R>=expand("<cword>")<CR><CR>
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vnoremap <silent> * :call VisualSelection('f')<CR>nN
 vnoremap <silent> # :call VisualSelection('b')<CR>nN
 
@@ -655,11 +693,11 @@ function! VisualSelection(direction) range
 endfunction
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Tag list
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 1
@@ -669,11 +707,11 @@ let Tlist_Sort_Type = "name"
 let Tlist_WinWidth = 80
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " LaTeX
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " latex is sorted by order
 let Tlist_tex_settings = 'latex;l:labels;s:sections;t:subsections;u:subsubsections;p:paragraphs'
@@ -699,11 +737,11 @@ let g:tex_flavor='latex'
 let g:tex_conceal="adgms"
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " ProVerif
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Syntax highlighting for proverif files (SPI calculus)
 augroup filetype
@@ -712,11 +750,11 @@ augroup filetype
 augroup END
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Make
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define filetype for Makefiles
 augroup filetype
@@ -729,11 +767,11 @@ augroup END
 set makeprg=make\ -j4
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " C/C++
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 augroup filetype
   au! BufNewFile,BufRead *.c,*.cpp,*.cc,*.h,*.hpp
@@ -751,11 +789,11 @@ let g:alternateNoDefaultAlternate = 1
 let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,cpp.h"
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " LLVM
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Enable syntax highlighting for LLVM files. To use, copy
 " utils/vim/llvm.vim to ~/.vim/syntax .
@@ -764,29 +802,56 @@ augroup filetype
 augroup END
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Clang Complete
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Use Clang Library
-let g:clang_use_library = 1
-
-" Set auto-completion pop-up
+" 0 - do not complete after ->, ., ::
+" 1 - automatically complete after ->, ., ::
 let g:clang_complete_auto = 1
-" Set the behavior of the auto-completion
+
+" 0 - Select nothing
+" 1 - Automatically select the first entry in the popup menu, but do not
+" insert it into the code.
+" 2 - Automatically select the first entry in the popup menu, and insert it
+" into the code.
 let g:clang_auto_select = 0
-" Show clang errors in the quickfix window
-let g:clang_complete_copen = 1
+
+" 0 - do not open quickfix window on error.
+" 1 - open quickfix window on error.
+let g:clang_complete_copen=1
+
+" 0 - do not highlight the warnings and errors
+" 1 - highlight the warnings and errors the same way clang does it
+let g:clang_hl_errors=1
+
 let g:clang_user_options='|| exit 0'
 
+" use libclang directly, fast due to caching
+let g:clang_use_library=1
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tell clang_complete where to find libclang
+let g:clang_library_path = '/usr/lib/llvm/'
+
+" 0 - do not do some snippets magic on code placeholders like function argument,
+"     template argument, template parameters, etc.
+" 1 - do some snippets magic on code placeholders like function argument,
+"     template argument, template parameters, etc.
+let g:clang_snippets = 0
+
+" The snippets engine (clang_complete, ultisnips... see the snippets
+" subdirectory).
+"let g:clang_snippets_engine = "clang_complete"
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " CTags
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 com Ctags !ctags -R --sort=yes --c-kinds=+fmstp --fields=+amS --language-force=C
 com Cpptags !ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++
@@ -794,11 +859,11 @@ com CCpptags !ctags -R --sort=yes --fields=+iaS --extra=+q
 com Cstags !ctags -R --sort=yes --c#-kinds=+p --fields=+iaS --extra=+q --language-force=C#
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Haskell
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define the path to the GHC compiler
 "let g:ghc = "/usr/bin/ghc-7.6.3"
@@ -817,13 +882,13 @@ augroup END
 let g:haddock_browser = "/usr/bin/firefox"
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Project Specific Settings
 "
 " Make sure this is always at the end of your vimrc file!
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " include user-specific settings
 if filereadable("~/.vimrc")

@@ -75,6 +75,8 @@ Used Plugins
 * Alternate file
 * Taglist
 * VIm LaTeX Suite
+* NERD Tree
+* NERD_commenter
 
 
 Screenshots
