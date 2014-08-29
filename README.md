@@ -22,7 +22,7 @@ otherwise user-specific commands may be overwritten.
 that sources `~/.vimrc`, else there is a cyclic dependence!
 
 
-### User-specific vimrc
+### Project-specific vimrc
 
 When **VIm** starts, it auomatically sources the `.project.vim` file from the
 current directory, if available.  This allows you to adapt **VIm** to specific
