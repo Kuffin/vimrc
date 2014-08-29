@@ -838,7 +838,7 @@ let g:clang_user_options='|| exit 0'
 let g:clang_use_library=1
 
 " tell clang_complete where to find libclang
-let g:clang_library_path = '/usr/lib/llvm/'
+let g:clang_library_path = '/usr/lib/'
 
 " 0 - do not do some snippets magic on code placeholders like function argument,
 "     template argument, template parameters, etc.
