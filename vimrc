@@ -798,8 +798,13 @@ let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,cpp.h"
 " Enable syntax highlighting for LLVM files. To use, copy
 " utils/vim/llvm.vim to ~/.vim/syntax .
 augroup filetype
- au! BufRead,BufNewFile *.ll set filetype=llvm
+  au! BufRead,BufNewFile *.ll set filetype=llvm
 augroup END
+
+augroup filetype
+  au! BufRead,BufNewFile *.td set filetype=tablegen
+augroup END
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
