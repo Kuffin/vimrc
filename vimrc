@@ -597,9 +597,6 @@ nnoremap <silent> <F3> :call SpellToggle()<CR>
 " <F5>  - toggle the tag list plugin window
 map <silent> <F5> :TlistUpdate<CR>:TlistToggle<CR>
 
-" <F6>  - show clang_complete quick fix
-"nnoremap <silent> <F6>
-
 " <F6>  - Show the compiler messages
 nnoremap <silent> <F6> :cl<CR>
 
@@ -618,7 +615,7 @@ xnoremap w gw
 
 
 " <Space> - toggle line number style
-nnoremap <Space> :call NumberToggle()<CR>
+nnoremap <silent> <Space> :call NumberToggle()<CR>
 
 " <BS> - Remove all trailing whitespaces
 nnoremap <silent> <BS> :DeleteTrailingWs<CR>
