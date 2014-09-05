@@ -213,7 +213,7 @@ set fdn=3
 set nospell
 
 " Set languages for spell checking
-set spelllang=en_US
+set spelllang=en
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -473,8 +473,10 @@ set formatoptions=c,q,r
 function! SpellToggle()
   if(&spell == 1)
     set nospell
+    echo "Spell: Off"
   else
     set spell
+    echo "Spell: On"
   endif
 endfunc
 
@@ -504,16 +506,6 @@ autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
 
 set relativenumber
-
-" Toggles Spell on/off
-function! SpellToggle()
-  if(&spell == 1)
-    set nospell
-  else
-    set spell
-  endif
-endfunc
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
