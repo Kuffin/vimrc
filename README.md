@@ -74,7 +74,8 @@ Used Plugins
 ------------
 
 * Spell
-* Clang Complete
+* Clang Complete (not in use)
+* YouCompleteMe
 * Alternate file
 * Taglist
 * VIm LaTeX Suite
