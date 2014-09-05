@@ -815,7 +815,7 @@ let g:clang_auto_select = 0
 
 " 0 - do not open quickfix window on error.
 " 1 - open quickfix window on error.
-let g:clang_complete_copen=1
+let g:clang_complete_copen=0
 
 " 0 - do not highlight the warnings and errors
 " 1 - highlight the warnings and errors the same way clang does it
