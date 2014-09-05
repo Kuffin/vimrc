@@ -1032,7 +1032,7 @@ let g:ycm_key_list_previous_completion = []
 
 " 0 - do not complete after ->, ., ::
 " 1 - automatically complete after ->, ., ::
-let g:clang_complete_auto = 1
+let g:clang_complete_auto = 0
 
 " 0 - Select nothing
 " 1 - Automatically select the first entry in the popup menu, but do not
