@@ -63,7 +63,7 @@ set nowrap
 
 " Make Vim wrap long lines at specified characters instead of wrapping at
 " the last character in the line.
-set linebreak
+set nolinebreak
 
 " Makes Vim ask for a confirmation instead of showing an error message.
 set confirm
@@ -452,15 +452,21 @@ set statusline+=\ %P                            " percent through file
 "
 " letter    meaning when present in 'formatoptions'
 " ------    ---------------------------------------
-" c         Auto-wrap comments using textwidth, inserting the current
-"           comment leader automatically.
-" q         Allow formatting of comments with "gq".
-" r         Automatically insert the current comment leader
-"           after hitting <ENTER> in Insert Mode.
 " t         Auto-wrap text using textwidth (does not apply to comments).
-"
+" c         Auto-wrap comments using textwidth, inserting the current comment
+"           leader automatically.
+" r         Automatically insert the current comment leader after hitting
+"           <ENTER> in Insert Mode.
+" o         Automatically insert the current comment leader after hitting 'o' or
+"           'O' in Normal mode.
+" q         Allow formatting of comments with "gq".
+" w         Trailing white space indicates a paragraph continues in the next
+"           line.   A line that ends in a non-white character ends a paragraph.
+" l         Long lines are not broken in insert mode: When a line was longer
+"           than 'textwidth' when the insert command started, Vim does not
+"           automatically format it.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set formatoptions=c,q,r
+set formatoptions=c,q,r,l
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
