@@ -1007,7 +1007,7 @@ let g:ycm_key_list_previous_completion = []
 " it is safe to be loaded. This is to prevent execution of malicious code from a
 " .ycm_extra_conf.py file you didn't write.
 " Default: 1
-"let g:ycm_confirm_extra_conf = 1
+let g:ycm_confirm_extra_conf = 0
 
 " By default, YCM's filepath completion will interpret relative paths like ../
 " as being relative to the folder of the file of the currently active buffer.
