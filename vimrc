@@ -92,6 +92,9 @@ set textwidth=80
 " ignored when expanding wildcards, completing file or directory names, etc.
 set wildignore+=*.o,*.d,*.obj,*.bak,*.exe,*.aux,*.toc,*.backup
 
+" Make completion case-insensitive
+set wildignorecase
+
 " Show the cursor line by default
 set cursorline
 
