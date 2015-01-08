@@ -92,6 +92,10 @@ set textwidth=80
 " ignored when expanding wildcards, completing file or directory names, etc.
 set wildignore+=*.o,*.d,*.obj,*.bak,*.exe,*.aux,*.toc,*.backup
 
+" Display certain whitespace characters
+set listchars=tab:»-,extends:@,trail:·
+set list
+
 " Make completion case-insensitive
 set wildignorecase
 
