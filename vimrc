@@ -1113,10 +1113,10 @@ let g:clang_snippets = 0
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-com Ctags !ctags -R --sort=yes --c-kinds=+fmstp --fields=+amS --language-force=C
-com Cpptags !ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++
-com CCpptags !ctags -R --sort=yes --fields=+iaS --extra=+q
-com Cstags !ctags -R --sort=yes --c#-kinds=+p --fields=+iaS --extra=+q --language-force=C#
+com! Ctags !ctags -R --sort=yes --c-kinds=+fmstp --fields=+amS --language-force=C
+com! Cpptags !ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++
+com! CCpptags !ctags -R --sort=yes --fields=+iaS --extra=+q
+com! Cstags !ctags -R --sort=yes --c#-kinds=+p --fields=+iaS --extra=+q --language-force=C#
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
