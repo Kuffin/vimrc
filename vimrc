@@ -62,11 +62,11 @@ set ruler
 
 " Set whether a line that doesn't fit into a window is wrapped around at
 " the end of the window.
-set nowrap
+set wrap
 
 " Make Vim wrap long lines at specified characters instead of wrapping at
 " the last character in the line.
-set nolinebreak
+set linebreak
 
 " Makes Vim ask for a confirmation instead of showing an error message.
 set confirm
@@ -215,16 +215,18 @@ set ignorecase
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define where to create folds
-set fdm=manual
+"set fdm=manual
 
 " Set the number of screen line above which a fold can be displayed closed.
-set fml=5
+"set fml=5
 
 " Define the maximum nesting of folds (for the 'indent' and 'syntax' methods).
-set fdn=3
+"set fdn=3
 
 " Specify the text displayed for a closed fold.
 "set fdt=
+
+set nofoldenable    " disable folding
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -296,7 +298,7 @@ set background=dark
 "   torte
 "   zellner
 "
-colorscheme desert
+colorscheme industry
 
 " set the color of the popup menu
 highlight Pmenu guibg=brown gui=bold
