@@ -28,6 +28,9 @@ syntax on
 " Enable filetype specific plugins and indentation
 filetype plugin indent on
 
+" Enable mouse itegration
+set mouse=a
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -97,7 +100,7 @@ set listchars=tab:»-,extends:@,trail:·
 set list
 
 " Make completion case-insensitive
-set wildignorecase
+"set wildignorecase
 
 " Show the cursor line by default
 set cursorline
@@ -118,17 +121,6 @@ if has('persistent_undo') && exists("&undodir")
   set undolevels=500                      " max undos stored
   set undoreload=10000                    " buffer stored undos
 endif
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Encryption
-"
-" see :help 'cm'
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set cryptmethod=blowfish2
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -161,14 +153,14 @@ set wildmode=longest
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Number of spaces a <TAB> counts for
-set tabstop=2
+set tabstop=4
 
 " Number of spaces that a Tab counts for while performing editing
 " operations.
-set softtabstop=2
+set softtabstop=4
 
 " Number of spaces to use for each step of (auto)indent.
-set shiftwidth=2
+set shiftwidth=4
 
 " When on, a <Tab> in front of a line inserts blanks according to
 " 'shiftwidth'. 'tabstop' is used in other places. A <BS> will delete a
@@ -210,7 +202,7 @@ set hlsearch
 set incsearch
 
 " Ignore the case when searching
-set noignorecase
+set ignorecase
 
 " When searching, try to be smart about cases
 " set smartcase
@@ -246,6 +238,16 @@ set nospell
 
 " Set languages for spell checking
 set spelllang=en
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" SuperTab
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" SuperTab option for context aware completion
+let g:SuperTabDefaultCompletionType = "<C-x><C-u>"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -294,7 +296,10 @@ set background=dark
 "   torte
 "   zellner
 "
-colorscheme default
+colorscheme desert
+
+" set the color of the popup menu
+highlight Pmenu guibg=brown gui=bold
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -374,104 +379,104 @@ hi StatusLineNC ctermfg=gray
 hi CursorColumn term=reverse ctermbg=1
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""
+"" User-defined statusline
+""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" User-defined statusline
+""recalculate the long line warning when idle and after saving
+"autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"recalculate the long line warning when idle and after saving
-autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
-
-"return a warning for "long lines" where "long" is either &textwidth or 80 (if
-"no &textwidth is set)
+""return a warning for "long lines" where "long" is either &textwidth or 80 (if
+""no &textwidth is set)
+""
+""return '' if no long lines
+""return '[#x,my,$z] if long lines are found, were x is the number of long
+""lines, y is the median length of the long lines and z is the length of the
+""longest line
+"function! StatuslineLongLineWarning()
+"    if !exists("b:statusline_long_line_warning")
+"        let long_line_lens = s:LongLines()
 "
-"return '' if no long lines
-"return '[#x,my,$z] if long lines are found, were x is the number of long
-"lines, y is the median length of the long lines and z is the length of the
-"longest line
-function! StatuslineLongLineWarning()
-    if !exists("b:statusline_long_line_warning")
-        let long_line_lens = s:LongLines()
-
-        if len(long_line_lens) > 0
-            let b:statusline_long_line_warning = "[" .
-                        \ '#' . len(long_line_lens) . "," .
-                        \ 'm' . s:Median(long_line_lens) . "," .
-                        \ '$' . max(long_line_lens) . "]"
-        else
-            let b:statusline_long_line_warning = ""
-        endif
-    endif
-    return b:statusline_long_line_warning
-endfunction
-
-"return a list containing the lengths of the long lines in this buffer
-function! s:LongLines()
-    let threshold = (&tw ? &tw : 80)
-    let spaces = repeat(" ", &ts)
-
-    let long_line_lens = []
-
-    let i = 1
-    while i <= line("$")
-        let len = strlen(substitute(getline(i), '\t', spaces, 'g'))
-        if len > threshold
-            call add(long_line_lens, len)
-        endif
-        let i += 1
-    endwhile
-
-    return long_line_lens
-endfunction
-
-"find the median of the given array of numbers
-function! s:Median(nums)
-    let nums = sort(a:nums)
-    let l = len(nums)
-
-    if l % 2 == 1
-        let i = (l-1) / 2
-        return nums[i]
-    else
-        return (nums[l/2] + nums[(l/2)-1]) / 2
-    endif
-endfunction
-
+"        if len(long_line_lens) > 0
+"            let b:statusline_long_line_warning = "[" .
+"                        \ '#' . len(long_line_lens) . "," .
+"                        \ 'm' . s:Median(long_line_lens) . "," .
+"                        \ '$' . max(long_line_lens) . "]"
+"        else
+"            let b:statusline_long_line_warning = ""
+"        endif
+"    endif
+"    return b:statusline_long_line_warning
+"endfunction
 "
-" Set statusline
+""return a list containing the lengths of the long lines in this buffer
+"function! s:LongLines()
+"    let threshold = (&tw ? &tw : 80)
+"    let spaces = repeat(" ", &ts)
 "
-
-set statusline=
-
+"    let long_line_lens = []
+"
+"    let i = 1
+"    while i <= line("$")
+"        let len = strlen(substitute(getline(i), '\t', spaces, 'g'))
+"        if len > threshold
+"            call add(long_line_lens, len)
+"        endif
+"        let i += 1
+"    endwhile
+"
+"    return long_line_lens
+"endfunction
+"
+""find the median of the given array of numbers
+"function! s:Median(nums)
+"    let nums = sort(a:nums)
+"    let l = len(nums)
+"
+"    if l % 2 == 1
+"        let i = (l-1) / 2
+"        return nums[i]
+"    else
+"        return (nums[l/2] + nums[(l/2)-1]) / 2
+"    endif
+"endfunction
+"
+""
+"" Set statusline
+""
+"
 "set statusline=
-"set statusline+=%#todo#  "switch to todo highlight
-"set statusline+=%F       "full filename
-"set statusline+=%#error# "switch to error highlight
-"set statusline+=%y       "filetype
-"set statusline+=%*       "switch back to normal statusline highlight
-"set statusline+=%l       "line number
-
-"set statusline+=%F                                       " full filename
-set statusline+=%{expand('%')}                        " relative path of current file
-"set statusline+=%#error#%{expand('%:f')}%* " last extension
-"set statusline+=%#error#%{expand('%:t:e')}%*                         " name of file (without extension)
-"set statusline+=%{fnamemodify(bufname('%'),':h')}/        " relative path
-"set statusline+=%{fnamemodify(bufname('%'),':t:r:s?^\\..*$??')} " filename without last extension
-"set statusline+=%#error#%{fnamemodify(bufname('%'),':t:s?^.*\\.?.?')}%* " last extension
-set statusline+=\ [
-set statusline+=%{strlen(&fenc)?&fenc:'none'},  " file encoding
-set statusline+=%{&ff}                          " file format
-set statusline+=]
-set statusline+=%y                              " filetype
-set statusline+=%h                              " help file flag
-set statusline+=%#error#%m%*                    " modified flag
-set statusline+=%r                              " read-only flag
-"set statusline+=\ \ -\ %{getcwd()}               " print CWD
-set statusline+=%=                              " left/right seperator
-set statusline+=%c,                             " cursor column
-set statusline+=%#error#%l%*/%L                           " cursor line/total lines
-set statusline+=\ %P                            " percent through file
+"
+""set statusline=
+""set statusline+=%#todo#  "switch to todo highlight
+""set statusline+=%F       "full filename
+""set statusline+=%#error# "switch to error highlight
+""set statusline+=%y       "filetype
+""set statusline+=%*       "switch back to normal statusline highlight
+""set statusline+=%l       "line number
+"
+""set statusline+=%F                                       " full filename
+"set statusline+=%{expand('%')}                        " relative path of current file
+""set statusline+=%#error#%{expand('%:f')}%* " last extension
+""set statusline+=%#error#%{expand('%:t:e')}%*                         " name of file (without extension)
+""set statusline+=%{fnamemodify(bufname('%'),':h')}/        " relative path
+""set statusline+=%{fnamemodify(bufname('%'),':t:r:s?^\\..*$??')} " filename without last extension
+""set statusline+=%#error#%{fnamemodify(bufname('%'),':t:s?^.*\\.?.?')}%* " last extension
+"set statusline+=\ [
+"set statusline+=%{strlen(&fenc)?&fenc:'none'},  " file encoding
+"set statusline+=%{&ff}                          " file format
+"set statusline+=]
+"set statusline+=%y                              " filetype
+"set statusline+=%h                              " help file flag
+"set statusline+=%#error#%m%*                    " modified flag
+"set statusline+=%r                              " read-only flag
+""set statusline+=\ \ -\ %{getcwd()}               " print CWD
+"set statusline+=%=                              " left/right seperator
+"set statusline+=%c,                             " cursor column
+"set statusline+=%#error#%l%*/%L                           " cursor line/total lines
+"set statusline+=\ %P                            " percent through file
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -540,10 +545,10 @@ function! NumberToggle()
   endif
 endfunc
 
-autocmd InsertEnter * :set norelativenumber
-autocmd InsertLeave * :set relativenumber
+"autocmd InsertEnter * :set norelativenumber
+"autocmd InsertLeave * :set relativenumber
 
-set relativenumber
+set norelativenumber
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -652,7 +657,7 @@ inoremap w <C-o>gwgw<CR>
 xnoremap w gw
 
 
-" <Space> - toggle line number style
+"<Space> - toggle line number style
 nnoremap <silent> <Space> :call NumberToggle()<CR>
 
 " <BS> - Remove all trailing whitespaces
@@ -662,7 +667,7 @@ nnoremap <silent> <BS> :DeleteTrailingWs<CR>
 inoremap f <C-X><C-F>
 
 " If pressing Tab in Normal Mode, cycle to the next tab
-nnoremap <silent> <Tab> :tabnext<CR>
+nnoremap <silent> <C-Tab> :tabnext<CR>
 
 " If pressing Shift+Tab in Normal Mode, cycle to the previous tab
 nnoremap <silent> <S-Tab> :tabprevious<CR>
@@ -856,10 +861,10 @@ set makeprg=make\ -j4
 
 augroup filetype
   au! BufNewFile,BufRead *.c,*.cpp,*.cc,*.h,*.hpp
-  set tabstop=2
+  set tabstop=4
   set expandtab
-  set softtabstop=2
-  set shiftwidth=2
+  set softtabstop=4
+  set shiftwidth=4
   set cindent
 augroup END
 
@@ -1124,18 +1129,18 @@ let g:ycm_confirm_extra_conf = 0
 
 " 0 - do not complete after ->, ., ::
 " 1 - automatically complete after ->, ., ::
-let g:clang_complete_auto = 0
+let g:clang_complete_auto = 1
 
 " 0 - Select nothing
 " 1 - Automatically select the first entry in the popup menu, but do not
 " insert it into the code.
 " 2 - Automatically select the first entry in the popup menu, and insert it
 " into the code.
-let g:clang_auto_select = 0
+let g:clang_auto_select = 1
 
 " 0 - do not open quickfix window on error.
 " 1 - open quickfix window on error.
-let g:clang_complete_copen=0
+let g:clang_complete_copen=1
 
 " 0 - do not highlight the warnings and errors
 " 1 - highlight the warnings and errors the same way clang does it
@@ -1147,18 +1152,20 @@ let g:clang_user_options='|| exit 0'
 let g:clang_use_library=1
 
 " tell clang_complete where to find libclang
-let g:clang_library_path = '/usr/lib/'
+let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib/'
+let g:clang_exec = '/Library/Developer/CommandLineTools/usr/bin/'
 
 " 0 - do not do some snippets magic on code placeholders like function argument,
 "     template argument, template parameters, etc.
 " 1 - do some snippets magic on code placeholders like function argument,
 "     template argument, template parameters, etc.
-let g:clang_snippets = 0
+let g:clang_snippets = 1
 
 " The snippets engine (clang_complete, ultisnips... see the snippets
 " subdirectory).
-"let g:clang_snippets_engine = "clang_complete"
+let g:clang_snippets_engine = "clang_complete"
 
+let g:clang_conceal_snippets=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
