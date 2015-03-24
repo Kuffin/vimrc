@@ -92,7 +92,7 @@ set cursorline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define the default width of the current window
-set winwidth=120
+set winwidth=80
 
 " Define the default height of the current window
 set winheight=40
@@ -267,6 +267,27 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
+" Concealed feature configuration
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Set conceallevel
+set conceallevel=2
+
+" Set concealcursor strategy
+"
+" n - Normal mode
+" v - Visual mode
+" i - Insert mode
+" c - Command line editing
+set concealcursor="nc"
+
+" Set Conceal highlight
+"hi Conceal ctermbg=black ctermfg=white guibg=black guifg=white
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " Colors & Highlighting
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -298,6 +319,7 @@ set background=dark
 "   zellner
 "
 colorscheme solarized
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -342,38 +364,12 @@ colorscheme solarized
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Concealed feature configuration
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Set conceallevel
-set conceallevel=2
-
-" Set concealcursor strategy
-"
-" n - Normal mode
-" v - Visual mode
-" i - Insert mode
-" c - Command line editing
-set concealcursor="nc"
-
-" Set Conceal highlight
-"hi Conceal ctermbg=black ctermfg=white guibg=black guifg=white
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
 " User-defined highlighting
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Show search results in red with an underline and without background
-"hi MatchParen ctermbg=red ctermfg=black guibg=red guifg=black
-
-"hi TabLineSel ctermbg=red
-"hi PMenuSel ctermbg=brown
-"hi StatusLine ctermfg=brown
-"hi StatusLineNC ctermfg=gray
-"hi CursorColumn term=reverse ctermbg=1
+hi! CursorColumn term=reverse cterm=reverse ctermbg=1
+hi! CursorLineNr term=bold,reverse cterm=bold,reverse ctermfg=6
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -382,8 +378,10 @@ set concealcursor="nc"
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"recalculate the long line warning when idle and after saving
+"recalculate the warnings when idle and after saving
 autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
+autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
+autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
 
 "return a warning for "long lines" where "long" is either &textwidth or 80 (if
 "no &textwidth is set)
@@ -397,12 +395,9 @@ function! StatuslineLongLineWarning()
         let long_line_lens = s:LongLines()
 
         if len(long_line_lens) > 0
-            let b:statusline_long_line_warning = "[" .
-                        \ '#' . len(long_line_lens) . "," .
-                        \ 'm' . s:Median(long_line_lens) . "," .
-                        \ '$' . max(long_line_lens) . "]"
+            let b:statusline_long_line_warning = 'long'
         else
-            let b:statusline_long_line_warning = ""
+            let b:statusline_long_line_warning = ''
         endif
     endif
     return b:statusline_long_line_warning
@@ -440,10 +435,79 @@ function! s:Median(nums)
     endif
 endfunction
 
-"
-" Set statusline
-"
-set statusline=\ \ 
+" return '[&et]' if &et is set wrong
+" return '[mixed-indenting]' if spaces and tabs are used to indent
+" return an empty string if everything is fine
+function! StatuslineTabWarning()
+    if !exists("b:statusline_tab_warning")
+        let tabs = search('^\t', 'nw') != 0
+        let spaces = search('^ ', 'nw') != 0
+
+        if tabs && spaces
+            let b:statusline_tab_warning =  'mixed'
+        elseif (spaces && !&et)
+            let b:statusline_tab_warning = "spaces"
+        elseif (tabs && &et)
+            let b:statusline_tab_warning = "tabs"
+        else
+            let b:statusline_tab_warning = ''
+        endif
+    endif
+    return b:statusline_tab_warning
+endfunction
+
+" return '\s' if trailing white space is detected
+" return '' otherwise
+function! StatuslineTrailingSpaceWarning()
+    if !exists("b:statusline_trailing_space_warning")
+        if search('\s\+$', 'nw') != 0
+            let b:statusline_trailing_space_warning = '\s'
+        else
+            let b:statusline_trailing_space_warning = ''
+        endif
+    endif
+    return b:statusline_trailing_space_warning
+endfunction
+
+" Combine multiple statusline informations to one string
+function! StatuslineCombined()
+    let text = ''
+
+    let next = StatuslineLongLineWarning()
+    if len(next) > 0
+        let text .= next
+    endif
+
+    let next = StatuslineTabWarning()
+    if len(next) > 0
+        if len(text) > 0
+            let text .= ','
+        endif
+        let text .= next
+    endif
+
+    let next = StatuslineTrailingSpaceWarning()
+    if len(next) > 0
+        if len(text) > 0
+            let text .= ','
+        endif
+        let text .= next
+    endif
+
+    if len(text) > 0
+        let text = '[' . text . ']'
+    endif
+
+    return text
+endfunction
+
+
+" Custom colors for the statusline
+hi User1 term=bold cterm=bold ctermfg=0 ctermbg=2
+hi User2 term=bold,reverse cterm=bold,reverse ctermbg=1 ctermfg=6
+hi User3 term=bold cterm=bold ctermfg=0 ctermbg=3
+
+set statusline=\ \ "
 set statusline+=%{expand('%')}                  " relative path of current file
 set statusline+=\ [
 set statusline+=%{strlen(&fenc)?&fenc:'none'},  " file encoding
@@ -451,14 +515,16 @@ set statusline+=%{&ff}                          " file format
 set statusline+=]
 set statusline+=%y                              " filetype
 set statusline+=%h                              " help file flag
-set statusline+=%#error#%m%*                    " modified flag
 set statusline+=%r                              " read-only flag
 "set statusline+=\ \ -\ %{getcwd()}             " print CWD
 "set statusline+=%=                             " left/right seperator
-set statusline+=\ -\ 
+set statusline+=\ -\ "
 set statusline+=%c,                             " cursor column
-set statusline+=%#error#%l%*/%L                 " cursor line/total lines
+set statusline+=%1*%l%*/%L                      " cursor line/total lines
 set statusline+=\ %P                            " percent through file
+set statusline+=\ "
+set statusline+=%2*%m%*                         " modified flag
+set statusline+=\ %3*%{StatuslineCombined()}%*
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -714,10 +780,10 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ex command for toggling hex mode - define mapping if desired
-command -bar Hexmode call ToggleHex()
+command! -bar Hexmode call ToggleHex()
 
 " helper function to toggle hex mode
-function ToggleHex()
+function! ToggleHex()
   " hex mode should be considered a read-only operation
   " save values for modified and read-only for restoration later,
   " and clear the read-only flag for now
