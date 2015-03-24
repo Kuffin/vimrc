@@ -56,6 +56,13 @@ Keymap
 | n               | `F6`              | shows compiler messages                                                   |
 | n,i             | `F12`             | inserts the current date and time                                         |
 
+Status Line
+-----------
+
+The status line is kept minimalistic. I didn't want a blown-up thing like Powerline.
+For this reason everything is left aligned.
+When you intermix tabs with white spaces for indentation, have trailing white spaces, or have lines longer than
+text width, the status line will show a short warning. (See Screenshot #5)
 
 Commands
 --------
@@ -91,4 +98,5 @@ Screenshots
 ![Screenshot 2](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/2.png "Screenshot 2")
 ![Screenshot 3](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/3.png "Screenshot 3")
 With Solarized Color Scheme
-![Screenshot 3](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/4.png "Screenshot 3")
+![Screenshot 4](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/4.png "Screenshot 4")
+![Screenshot 5](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/5.png "Screenshot 5")
