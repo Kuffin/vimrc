@@ -1,23 +1,17 @@
-" All system-wide defaults are set in $VIMRUNTIME/archlinux.vim (usually
-" just /usr/share/vim/vimfiles/archlinux.vim) and sourced by the call to
-" :runtime you can find below.  If you wish to change any of those
-" settings, you should do it in this file (/etc/vimrc), since archlinux.vim
-" will be overwritten everytime an upgrade of the vim packages is
-" performed.  It is recommended to make changes after sourcing
-" archlinux.vim since it alters the value of the 'compatible' option.
+" All system-wide defaults are set in $VIMRUNTIME/archlinux.vim (usually just /usr/share/vim/vimfiles/archlinux.vim) and
+" sourced by the call to :runtime you can find below.  If you wish to change any of those settings, you should do it in
+" this file (/etc/vimrc), since archlinux.vim will be overwritten everytime an upgrade of the vim packages is performed.
+" It is recommended to make changes after sourcing archlinux.vim since it alters the value of the 'compatible' option.
 
-" This line should not be removed as it ensures that various options are
-" properly set to work with the Vim-related packages.
+" This line should not be removed as it ensures that various options are properly set to work with the Vim-related
+" packages.
 runtime! archlinux.vim
 
-" If you prefer the old-style vim functionalty, add 'runtime!
-" vimrc_example.vim'
+" If you prefer the old-style vim functionalty, add 'runtime! vimrc_example.vim'
 "
-" Or better yet, read /usr/share/vim/vim72/vimrc_example.vim or the vim
-" manual and configure vim to your own liking!
+" Or better yet, read /usr/share/vim/vim72/vimrc_example.vim or the vim manual and configure vim to your own liking!
 
-" >>> Note: to set any value to default, comment the line with \"
-"           to disable a setting, add "no" to the beginning.
+" >>> Note: to set any value to default, comment the line with \" to disable a setting, add "no" to the beginning.
 
 " Disable compatibility mode
 set nocompatible
@@ -29,11 +23,11 @@ syntax on
 filetype plugin indent on
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " General behavior of Vim
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set the standard encoding
 set encoding=utf8
@@ -44,7 +38,7 @@ set cmdheight=1
 " Always show the status line
 set laststatus=2
 
-" Always show tab line
+" Show tab line if there are at least two pages
 set showtabline=1
 
 " Show (partial) command in status line
@@ -53,9 +47,20 @@ set showcmd
 " Show line numbers.
 set number
 
+" Show offset
+set relativenumber
+
 " Show the line and column number of the cursor position, seperated by a
 " comma.
 set ruler
+
+" Makes Vim ask for a confirmation instead of showing an error message.
+set confirm
+
+" Set the maximum width of text that is being insterd without breaking it
+" to a new line.
+" Setting this value to '0' disables this option.
+set textwidth=120
 
 " Set whether a line that doesn't fit into a window is wrapped around at
 " the end of the window.
@@ -65,141 +70,141 @@ set nowrap
 " the last character in the line.
 set nolinebreak
 
-" Makes Vim ask for a confirmation instead of showing an error message.
-set confirm
-
-" Define the default width of the current window
-set winwidth=60
-
-" Define the default height of the current window
-set winheight=15
 
 " Show a vertical lign at column 80
-set colorcolumn=81
-
-" Define the minimal width for a window
-set winminwidth=20
-
-" Define the minimal height for a window
-set winminheight=8
-
-" Set the maximum width of text that is being insterd without breaking it
-" to a new line.
-" Setting this value to '0' disables this option.
-set textwidth=80
-
-" A list of file patterns. A file that matches with one of these patterns is
-" ignored when expanding wildcards, completing file or directory names, etc.
-set wildignore+=*.o,*.d,*.obj,*.bak,*.exe,*.aux,*.toc,*.backup
+set colorcolumn=121
 
 " Display certain whitespace characters
 set listchars=tab:»-,extends:@,trail:·
 set list
 
-" Make completion case-insensitive
-set wildignorecase
-
 " Show the cursor line by default
 set cursorline
 
 " Make 'word' stop at underscores. Does not affect 'Word'.
-set iskeyword-=_
+"set iskeyword-=_
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Persistent undo
+" Window Properties
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set undodir=$HOME/.vim/undo/            " where to store undofiles
-if has('persistent_undo') && exists("&undodir")
-  set undofile                            " enable undofile
-  set undolevels=500                      " max undos stored
-  set undoreload=10000                    " buffer stored undos
-endif
+" Define the default width of the current window
+set winwidth=120
+
+" Define the default height of the current window
+set winheight=40
+
+" Define the minimal width for a window
+set winminwidth=40
+
+" Define the minimal height for a window
+set winminheight=20
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Encryption
+" Wildmenu
 "
-" see :help 'cm'
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set cryptmethod=blowfish2
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Scrolling properties
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Set leading/trailing lines for the cursor when moving vertically.
-set scrolloff=7
-
-" Set leading/trailing columns for the cursor when moving horizontally.
-set sidescrolloff=20
-
-" Set the amount of columns to scroll horizontally, when the end of the
-" window is reached.
-set sidescroll=35
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set Wildmenu
 set wildmenu
 
 " Make the wild menu auto complete to the longest substring of all matches
-set wildmode=longest
+set wildmode=list
+
+" A list of file patterns. A file that matches with one of these patterns is
+" ignored when expanding wildcards, completing file or directory names, etc.
+set wildignore+=.*.swo,.*.swp,.clang_complete,.project.vim,.ycm_extra_conf.py,project.debug,tags,rubber.cache,*.o,*.pyc
+
+" Make completion case-insensitive
+set wildignorecase
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Persistent undo
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set undodir=$HOME/.vim/undo/            " where to store undofiles
+set undofile                            " enable undofile
+set undolevels=500                      " max undos stored
+set undoreload=10000                    " buffer stored undos
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Encryption
+"
+" see :help 'cm'
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set cryptmethod=blowfish2
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Scrolling properties
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Set leading/trailing lines for the cursor when moving vertically.
+set scrolloff=7
+
+" Set leading/trailing columns for the cursor when moving horizontally.
+set sidescrolloff=15
+
+" Set the amount of columns to scroll horizontally, when the end of the window is reached.
+set sidescroll=1
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Indentation rules
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Number of spaces a <TAB> counts for
-set tabstop=2
+set tabstop=4
 
-" Number of spaces that a Tab counts for while performing editing
-" operations.
-set softtabstop=2
+" Number of spaces that a Tab counts for while performing editing operations.
+set softtabstop=4
 
 " Number of spaces to use for each step of (auto)indent.
-set shiftwidth=2
+set shiftwidth=4
 
-" When on, a <Tab> in front of a line inserts blanks according to
-" 'shiftwidth'. 'tabstop' is used in other places. A <BS> will delete a
-" 'shiftwidth' wide bunch of space at the start of the line.
-" What gets inserted (a <Tab> or spaces) depends on the 'expandtab' option.
+" When on, a <Tab> in front of a line inserts blanks according to 'shiftwidth'. 'tabstop' is used in other places. A
+" <BS> will delete a 'shiftwidth' wide bunch of space at the start of the line.  What gets inserted (a <Tab> or spaces)
+" depends on the 'expandtab' option.
 set smarttab
 
-" Use the appropriate number of spaces to insert a <Tab>.  Spaces are used
-" in indents with the '>' and '<' commands and when 'autoindent' is on. To
-" insert a real tab when 'expandtab' is on, use CTRL-V <Tab>.
+" Use the appropriate number of spaces to insert a <Tab>.  Spaces are used in indents with the '>' and '<' commands and
+" when 'autoindent' is on. To insert a real tab when 'expandtab' is on, use CTRL-V <Tab>.
 set expandtab
 
-" Copy indent from current line when starting a new line (typing <CR> in
-" Insert Mode or when using the "o" or "O" command).
+" Copy indent from current line when starting a new line (typing <CR> in Insert Mode or when using the "o" or "O"
+" command).
 set autoindent
 
-" When a bracket is inserted, briefly jump to the matching one. The jump is
-" only done if the match can be seen on the screen. The time to show the
-" match can be set with "matchtime".
+" When a bracket is inserted, briefly jump to the matching one. The jump is only done if the match can be seen on the
+" screen. The time to show the match can be set with "matchtime".
 " set showmatch
 " set matchtime 5
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Search properties
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Allow 'search next' to jump back to the beginning of the file if the end
-" was reached (equivalent for 'search previous').
+" Allow 'search next' to jump back to the beginning of the file if the end was reached (equivalent for 'search
+" previous').
 set nowrapscan
 
 " Set whether to highlight matches for previous search patterns.
@@ -209,37 +214,34 @@ set hlsearch
 " pattern matches.
 set incsearch
 
-" Ignore the case when searching
-set noignorecase
-
-" When searching, try to be smart about cases
-" set smartcase
+" Whether to be case sensitive when searching
+set smartcase
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " User-defined folding
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define where to create folds
-set fdm=manual
+set foldmethod=syntax
 
 " Set the number of screen line above which a fold can be displayed closed.
-set fml=5
+set foldminlines=4
 
 " Define the maximum nesting of folds (for the 'indent' and 'syntax' methods).
-set fdn=3
+set foldnestmax=1
 
 " Specify the text displayed for a closed fold.
 "set fdt=
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Spelling
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Disable spellchecking by default
 set nospell
@@ -248,25 +250,26 @@ set nospell
 set spelllang=en
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Vim auto completion
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set completeopt=menu,menuone,longest,preview
+set completeopt=menu,menuone,preview
 
 " Limit popup menu height
 set pumheight=15
 
-au CursorMovedI,InsertLeave * if pumvisible() == 0|sil! pclose|endif
+" Close invisible preview windows
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Colors & Highlighting
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " When set to "dark", Vim will try to use colors that look good on a dark
 " background. When set to "light", Vim will try to use colors that look good
@@ -294,19 +297,19 @@ set background=dark
 "   torte
 "   zellner
 "
-colorscheme default
+colorscheme solarized
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Solarized
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " This is set to 16 by default, meaning that Solarized will attempt to use the
 " standard 16 colors of your terminal emulator. You will need to set those
 " colors to the correct Solarized values either manually or by importing one of
 " the many colorscheme available for popular terminal emulators and Xresources.
-"g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 
 " If you use a terminal emulator with a transparent background and Solarized
 " isn't displaying the background color transparently, set this to 1 and
@@ -334,17 +337,17 @@ colorscheme default
 " using :set list can be set to one of three levels depending on your needs.
 " Default value is normal with high and low options.
 "g:solarized_visibility=   "normal"|   "high" or "low"
-"g:solarized_visibility="low"
+"let g:solarized_visibility="normal"
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Concealed feature configuration
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set conceallevel
-set cole=2
+set conceallevel=2
 
 " Set concealcursor strategy
 "
@@ -352,33 +355,32 @@ set cole=2
 " v - Visual mode
 " i - Insert mode
 " c - Command line editing
-set cocu="nc"
+set concealcursor="nc"
 
 " Set Conceal highlight
-hi Conceal ctermbg=black ctermfg=white guibg=black guifg=white
+"hi Conceal ctermbg=black ctermfg=white guibg=black guifg=white
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " User-defined highlighting
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Show search results in red with an underline and without background
-hi MatchParen ctermbg=red ctermfg=black guibg=red guifg=black
+"hi MatchParen ctermbg=red ctermfg=black guibg=red guifg=black
 
-hi TabLineSel ctermbg=red
-hi PMenuSel ctermbg=brown
-hi StatusLine ctermfg=brown
-hi StatusLineNC ctermfg=gray
-hi CursorColumn term=reverse ctermbg=1
+"hi TabLineSel ctermbg=red
+"hi PMenuSel ctermbg=brown
+"hi StatusLine ctermfg=brown
+"hi StatusLineNC ctermfg=gray
+"hi CursorColumn term=reverse ctermbg=1
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " User-defined statusline
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "recalculate the long line warning when idle and after saving
 autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
@@ -441,24 +443,8 @@ endfunction
 "
 " Set statusline
 "
-
-set statusline=
-
-"set statusline=
-"set statusline+=%#todo#  "switch to todo highlight
-"set statusline+=%F       "full filename
-"set statusline+=%#error# "switch to error highlight
-"set statusline+=%y       "filetype
-"set statusline+=%*       "switch back to normal statusline highlight
-"set statusline+=%l       "line number
-
-"set statusline+=%F                                       " full filename
-set statusline+=%{expand('%')}                        " relative path of current file
-"set statusline+=%#error#%{expand('%:f')}%* " last extension
-"set statusline+=%#error#%{expand('%:t:e')}%*                         " name of file (without extension)
-"set statusline+=%{fnamemodify(bufname('%'),':h')}/        " relative path
-"set statusline+=%{fnamemodify(bufname('%'),':t:r:s?^\\..*$??')} " filename without last extension
-"set statusline+=%#error#%{fnamemodify(bufname('%'),':t:s?^.*\\.?.?')}%* " last extension
+set statusline=\ \ 
+set statusline+=%{expand('%')}                  " relative path of current file
 set statusline+=\ [
 set statusline+=%{strlen(&fenc)?&fenc:'none'},  " file encoding
 set statusline+=%{&ff}                          " file format
@@ -467,14 +453,15 @@ set statusline+=%y                              " filetype
 set statusline+=%h                              " help file flag
 set statusline+=%#error#%m%*                    " modified flag
 set statusline+=%r                              " read-only flag
-"set statusline+=\ \ -\ %{getcwd()}               " print CWD
-set statusline+=%=                              " left/right seperator
+"set statusline+=\ \ -\ %{getcwd()}             " print CWD
+"set statusline+=%=                             " left/right seperator
+set statusline+=\ -\ 
 set statusline+=%c,                             " cursor column
-set statusline+=%#error#%l%*/%L                           " cursor line/total lines
+set statusline+=%#error#%l%*/%L                 " cursor line/total lines
 set statusline+=\ %P                            " percent through file
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Format options
 "
@@ -497,15 +484,15 @@ set statusline+=\ %P                            " percent through file
 " l         Long lines are not broken in insert mode: When a line was longer
 "           than 'textwidth' when the insert command started, Vim does not
 "           automatically format it.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set formatoptions=c,q,r,l
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " User-defined commands
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Toggles spell
 function! SpellToggle()
@@ -543,10 +530,8 @@ endfunc
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
 
-set relativenumber
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Custom keymaps
 "
@@ -608,7 +593,7 @@ set relativenumber
 "   <PageUp>       page-up
 "   <PageDown>     page-down
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""""""""""""
@@ -644,7 +629,7 @@ cnoremap <silent> <F12> <C-R>=strftime('%c')<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""
-" Shortcut for arraging text to 'textwidth'
+" Shortcut for arranging text to 'textwidth'
 """"""""""""""""""""""""""""""""""""""""
 
 nnoremap w gwgw
@@ -655,7 +640,7 @@ xnoremap w gw
 " <Space> - toggle line number style
 nnoremap <silent> <Space> :call NumberToggle()<CR>
 
-" <BS> - Remove all trailing whitespaces
+" <BS> - Remove all trailing white spaces
 nnoremap <silent> <BS> :DeleteTrailingWs<CR>
 
 " <A-F> - Vim's file name completion
@@ -691,10 +676,10 @@ vnoremap <silent> <C-C> <ESC>:call NERDComment(1, "toggle")<CR>
 nnoremap j :tselect <C-R>=expand("<cword>")<CR><CR>
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vnoremap <silent> * :call VisualSelection('f')<CR>nN
 vnoremap <silent> # :call VisualSelection('b')<CR>nN
 
@@ -720,13 +705,13 @@ function! VisualSelection(direction) range
 endfunction
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Hexmode
 "
 " View and edit files byte-wise.
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ex command for toggling hex mode - define mapping if desired
 command -bar Hexmode call ToggleHex()
@@ -774,11 +759,11 @@ function ToggleHex()
 endfunction
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Tag list
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 1
@@ -788,11 +773,11 @@ let Tlist_Sort_Type = "name"
 let Tlist_WinWidth = 80
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " LaTeX
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " latex is sorted by order
 let Tlist_tex_settings = 'latex;l:labels;s:sections;t:subsections;u:subsubsections;p:paragraphs'
@@ -818,11 +803,11 @@ let g:tex_flavor='latex'
 let g:tex_conceal="adgms"
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " ProVerif
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Syntax highlighting for proverif files (SPI calculus)
 augroup filetype
@@ -831,50 +816,43 @@ augroup filetype
 augroup END
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Make
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define filetype for Makefiles
 augroup filetype
  au! BufRead,BufNewFile *Makefile* set filetype=make
- " In Makefiles don't expand tabs to spaces
- au Filetype make set noexpandtab
 augroup END
 
 " Set the default make program
 set makeprg=make\ -j4
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " C/C++
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 augroup filetype
-  au! BufNewFile,BufRead *.c,*.cpp,*.cc,*.h,*.hpp
-  set tabstop=2
-  set expandtab
-  set softtabstop=2
-  set shiftwidth=2
-  set cindent
+  au! BufNewFile,BufRead *.c,*.cpp,*.cc,*.h,*.hpp set cindent
 augroup END
 
 "
 " Allows to jump to the alternate file, e.g. the header file for a C file
 "
 let g:alternateNoDefaultAlternate = 1
-let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,cpp.h"
+let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,hpp,h"
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " LLVM
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Enable syntax highlighting for LLVM files. To use, copy
 " utils/vim/llvm.vim to ~/.vim/syntax .
@@ -888,11 +866,11 @@ augroup END
 
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " YouCompleteMe
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " number of characters the user needs to type before identifier-based completion
 " suggestions are triggered
@@ -1116,44 +1094,44 @@ let g:ycm_confirm_extra_conf = 0
   "\ }
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Clang Complete
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " 0 - do not complete after ->, ., ::
 " 1 - automatically complete after ->, ., ::
-let g:clang_complete_auto = 0
+"let g:clang_complete_auto = 0
 
 " 0 - Select nothing
 " 1 - Automatically select the first entry in the popup menu, but do not
 " insert it into the code.
 " 2 - Automatically select the first entry in the popup menu, and insert it
 " into the code.
-let g:clang_auto_select = 0
+"let g:clang_auto_select = 0
 
 " 0 - do not open quickfix window on error.
 " 1 - open quickfix window on error.
-let g:clang_complete_copen=0
+"let g:clang_complete_copen=0
 
 " 0 - do not highlight the warnings and errors
 " 1 - highlight the warnings and errors the same way clang does it
-let g:clang_hl_errors=1
+"let g:clang_hl_errors=1
 
-let g:clang_user_options='|| exit 0'
+"let g:clang_user_options='|| exit 0'
 
 " use libclang directly, fast due to caching
-let g:clang_use_library=1
+"let g:clang_use_library=1
 
 " tell clang_complete where to find libclang
-let g:clang_library_path = '/usr/lib/'
+"let g:clang_library_path = '/usr/lib/'
 
 " 0 - do not do some snippets magic on code placeholders like function argument,
 "     template argument, template parameters, etc.
 " 1 - do some snippets magic on code placeholders like function argument,
 "     template argument, template parameters, etc.
-let g:clang_snippets = 0
+"let g:clang_snippets = 0
 
 " The snippets engine (clang_complete, ultisnips... see the snippets
 " subdirectory).
@@ -1161,11 +1139,11 @@ let g:clang_snippets = 0
 
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " CTags
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 com! Ctags !ctags -R --sort=yes --c-kinds=+fmstp --fields=+amS --language-force=C
 com! Cpptags !ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++
@@ -1173,11 +1151,11 @@ com! CCpptags !ctags -R --sort=yes --fields=+iaS --extra=+q
 com! Cstags !ctags -R --sort=yes --c#-kinds=+p --fields=+iaS --extra=+q --language-force=C#
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Haskell
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define the path to the GHC compiler
 "let g:ghc = "/usr/bin/ghc-7.6.3"
@@ -1196,13 +1174,13 @@ augroup END
 let g:haddock_browser = "/usr/bin/firefox"
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Project Specific Settings
 "
 " Make sure this is always at the end of your vimrc file!
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " include user-specific settings
 if filereadable("~/.vimrc")
