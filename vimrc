@@ -96,8 +96,8 @@ set textwidth=80
 set wildignore+=*.o,*.d,*.obj,*.bak,*.exe,*.aux,*.toc,*.backup
 
 " Display certain whitespace characters
-set listchars=tab:»-,extends:@,trail:·
-set list
+"set listchars=tab:»-,extends:@,trail:·
+"set list
 
 " Make completion case-insensitive
 "set wildignorecase
@@ -166,12 +166,12 @@ set shiftwidth=4
 " 'shiftwidth'. 'tabstop' is used in other places. A <BS> will delete a
 " 'shiftwidth' wide bunch of space at the start of the line.
 " What gets inserted (a <Tab> or spaces) depends on the 'expandtab' option.
-set smarttab
+"set smarttab
 
 " Use the appropriate number of spaces to insert a <Tab>.  Spaces are used
 " in indents with the '>' and '<' commands and when 'autoindent' is on. To
 " insert a real tab when 'expandtab' is on, use CTRL-V <Tab>.
-set expandtab
+"set expandtab
 
 " Copy indent from current line when starting a new line (typing <CR> in
 " Insert Mode or when using the "o" or "O" command).
@@ -236,7 +236,7 @@ set nofoldenable    " disable folding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Disable spellchecking by default
-set nospell
+set spell
 
 " Set languages for spell checking
 set spelllang=en
@@ -351,7 +351,7 @@ highlight Pmenu guibg=brown gui=bold
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set conceallevel
-set cole=2
+set cole=0
 
 " Set concealcursor strategy
 "
@@ -822,7 +822,7 @@ let g:tex_flavor='latex'
 " g : Greek
 " m : math
 " s : superscript / subscript
-let g:tex_conceal="adgms"
+let g:tex_conceal=""
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -864,7 +864,7 @@ set makeprg=make\ -j4
 augroup filetype
   au! BufNewFile,BufRead *.c,*.cpp,*.cc,*.h,*.hpp
   set tabstop=4
-  set expandtab
+  "set expandtab
   set softtabstop=4
   set shiftwidth=4
   set cindent
