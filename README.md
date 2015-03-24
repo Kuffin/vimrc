@@ -35,7 +35,7 @@ Keymap
 | Mode            | Keys              | Effect                                                                    |
 |-----------------|-------------------|---------------------------------------------------------------------------|
 | n,i,v,c,o       | `Alt` + `Q`       | like `Esc` (trust me, you will love this)                                 |
-| n,i             | `Alt` + `W`       | format the current line at the 80th column (like `gwgw`)                  |
+| n,i             | `Alt` + `W`       | automatically wrap the text at `text width` (like `gwgw`)                 |
 | i               | `Alt` + `F`       | file completion, like `Ctrl` + `X`, `Ctrl` + `F`                          |
 | n               | `Space`           | toggles between regular line numbering and hybrid mode                    |
 | n               | `BackSpace`       | removes all trailing whitespaces                                          |
@@ -81,6 +81,7 @@ Used Plugins
 * VIm LaTeX Suite
 * NERD Tree
 * NERD_commenter
+* Solarized Color Scheme
 
 
 Screenshots
@@ -89,3 +90,5 @@ Screenshots
 ![Screenshot 1](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/1.png "Screenshot 1")
 ![Screenshot 2](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/2.png "Screenshot 2")
 ![Screenshot 3](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/3.png "Screenshot 3")
+With Solarized Color Scheme
+![Screenshot 3](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/4.png "Screenshot 3")
