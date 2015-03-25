@@ -365,7 +365,7 @@ colorscheme solarized
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-hi! CursorColumn term=reverse cterm=reverse ctermbg=1
+hi! ColorColumn term=reverse cterm=reverse
 hi! CursorLineNr term=bold,reverse cterm=bold,reverse ctermfg=6
 
 
