@@ -282,9 +282,6 @@ set conceallevel=2
 " c - Command line editing
 set concealcursor="nc"
 
-" Set Conceal highlight
-"hi Conceal ctermbg=black ctermfg=white guibg=black guifg=white
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
