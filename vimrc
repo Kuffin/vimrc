@@ -98,10 +98,10 @@ set winwidth=80
 set winheight=25
 
 " Define the minimal width for a window
-set winminwidth=40
+"set winminwidth=40
 
 " Define the minimal height for a window
-set winminheight=20
+"set winminheight=20
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
