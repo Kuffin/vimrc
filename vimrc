@@ -95,7 +95,7 @@ set cursorline
 set winwidth=80
 
 " Define the default height of the current window
-set winheight=40
+set winheight=25
 
 " Define the minimal width for a window
 set winminwidth=40
