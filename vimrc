@@ -114,7 +114,7 @@ set winheight=25
 set wildmenu
 
 " Make the wild menu auto complete to the longest substring of all matches
-set wildmode=list
+set wildmode=list:longest
 
 " A list of file patterns. A file that matches with one of these patterns is
 " ignored when expanding wildcards, completing file or directory names, etc.
