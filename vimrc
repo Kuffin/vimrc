@@ -256,7 +256,7 @@ set spelllang=en
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set completeopt=menu,menuone,preview
+" DOn't set completeopt, as YCM overrides it anyway
 
 " Limit popup menu height
 set pumheight=15
