@@ -706,9 +706,6 @@ nnoremap <silent> <Space> :call NumberToggle()<CR>
 " <BS> - Remove all trailing white spaces
 nnoremap <silent> <BS> :DeleteTrailingWs<CR>
 
-" <A-F> - Vim's file name completion
-inoremap f <C-X><C-F>
-
 " If pressing Tab in Normal Mode, cycle to the next tab
 nnoremap <silent> <Tab> :tabnext<CR>
 
@@ -725,15 +722,17 @@ nnoremap <C-N> :tabnew <C-D>
 " <A-N> - create new vertical window and prompt file open dialog
 nnoremap n <C-W>v<C-W>l:edit <C-D>
 
-" ,t  - open the alternate file in a new tab
-nnoremap <silent> ,t :AT<CR>
-
-" ,t  - open the alternate file in a new vertical window
-nnoremap <silent> ,v :AV<CR>
+" Operator-pending commands for FSwitch
+" Open the alternate file
+nnoremap <silent> ,ff :FSHere<CR>
+nnoremap <silent> ,fh <C-W>v:FSHere<CR>
+nnoremap <silent> ,fk <C-W>s:FSHere<CR>
+nnoremap <silent> ,fj <C-W>s<C-W>j:FSHere<CR>
+nnoremap <silent> ,fl <C-W>v<C-W>l:FSHere<CR>
 
 " ,c  - toggle comment (uses NERD_commenter)
 nnoremap <silent> <C-C> :call NERDComment(0, "toggle")<CR>
-vnoremap <silent> <C-C> <ESC>:call NERDComment(1, "toggle")<CR>
+vnoremap <silent> <C-C> :call NERDComment(1, "toggle")<CR>
 
 " <A-J> - Open tag list selection menu
 nnoremap j :tselect <C-R>=expand("<cword>")<CR><CR>
