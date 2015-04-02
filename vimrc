@@ -256,7 +256,7 @@ set spelllang=en
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" DOn't set completeopt, as YCM overrides it anyway
+" Don't set completeopt, as YCM overrides it anyway
 
 " Limit popup menu height
 set pumheight=15
