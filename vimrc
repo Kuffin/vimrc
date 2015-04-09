@@ -575,7 +575,7 @@ command! DeleteTrailingWs :%s/\s\+$//
 command! Untab2 :%s/\t/  /g
 
 " Substitute all tabs by four whitespaces
-command! Untab4 :%s/\t/  /g
+command! Untab4 :%s/\t/    /g
 
 " Alias to vertically resize the current window
 "command! -nargs=+ Say :echo <q-args>
