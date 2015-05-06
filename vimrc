@@ -72,19 +72,21 @@ set linebreak
 set confirm
 
 " Define the default width of the current window
-set winwidth=60
+set columns=100
+"set winwidth=50
 
 " Define the default height of the current window
-set winheight=15
+"set winheight=100
+set lines=70
 
 " Show a vertical lign at column 80
 set colorcolumn=81
 
 " Define the minimal width for a window
-set winminwidth=20
+"set winminwidth=20
 
 " Define the minimal height for a window
-set winminheight=8
+"set winminheight=50
 
 " Set the maximum width of text that is being insterd without breaking it
 " to a new line.
@@ -100,13 +102,13 @@ set wildignore+=*.o,*.d,*.obj,*.bak,*.exe,*.aux,*.toc,*.backup
 "set list
 
 " Make completion case-insensitive
-"set wildignorecase
+set wildignorecase
 
 " Show the cursor line by default
 set cursorline
 
 " Make 'word' stop at underscores. Does not affect 'Word'.
-set iskeyword-=_
+"set iskeyword-=_
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -143,7 +145,7 @@ set sidescroll=35
 set wildmenu
 
 " Make the wild menu auto complete to the longest substring of all matches
-set wildmode=longest
+set wildmode=list:longest
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -192,7 +194,7 @@ set autoindent
 
 " Allow 'search next' to jump back to the beginning of the file if the end
 " was reached (equivalent for 'search previous').
-set nowrapscan
+set wrapscan
 
 " Set whether to highlight matches for previous search patterns.
 set hlsearch
@@ -249,7 +251,7 @@ set spelllang=en
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " SuperTab option for context aware completion
-let g:SuperTabDefaultCompletionType = "<C-x><C-u>"
+"let g:SuperTabDefaultCompletionType = "<C-x><C-u>"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -505,7 +507,7 @@ hi CursorColumn term=reverse ctermbg=1
 "           than 'textwidth' when the insert command started, Vim does not
 "           automatically format it.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set formatoptions=c,q,r,l
+set formatoptions=t,c,q,r,l
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -825,6 +827,12 @@ let g:tex_flavor='latex'
 let g:tex_conceal=""
 
 
+let Tex_FoldedSections=""
+let Tex_FoldedEnvironments=""
+let Tex_FoldedMisc=""
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " ProVerif
@@ -905,7 +913,7 @@ augroup END
 " suggestions are triggered
 " NOTE: this option is not used for semantic completion
 " Default: 2
-let g:ycm_min_num_of_chars_for_completion = 3
+"let g:ycm_min_num_of_chars_for_completion = 3
 
 " minimum number of characters that a completion candidate coming from the
 " identifier completer must have to be shown in the popup menu
@@ -948,12 +956,12 @@ let g:ycm_min_num_of_chars_for_completion = 3
 " YCM will use the value of this option as the symbol for errors in the Vim
 " gutter.
 " Default: >>
-let g:ycm_error_symbol = '<{'
+"let g:ycm_error_symbol = '<{'
 
 " YCM will use the value of this option as the symbol for warnings in the Vim
 " gutter.
 " Default: >>
-let g:ycm_warning_symbol = '>>'
+"let g:ycm_warning_symbol = '>>'
 
 " put icons in Vim's gutter on lines that have a diagnostic set
 " NOTE: turning this off will also turn off the YcmErrorLine and YcmWarningLine
@@ -969,7 +977,7 @@ let g:ycm_warning_symbol = '>>'
 " echo the text of the diagnostic present on the current line when you move your
 " cursor to that line
 " Default: 1
-let g:ycm_echo_current_diagnostic = 1
+"let g:ycm_echo_current_diagnostic = 1
 
 " populate the location list automatically every time it gets new diagnostic
 " data
@@ -1069,18 +1077,18 @@ let g:ycm_echo_current_diagnostic = 1
 " maximum number of diagnostics shown to the user when errors or warnings are
 " detected
 " Default: 30
-let g:ycm_max_diagnostics_to_display = 10
+"let g:ycm_max_diagnostics_to_display = 10
 
 " This option controls the key mappings used to select the first completion
 " string. Invoking any of them repeatedly cycles forward through the completion
 " list.
 " NOTE: <C-N> also works
 " Default: ['<TAB>', '<Down>']
-let g:ycm_key_list_select_completion = []
+"let g:ycm_key_list_select_completion = []
 
 " NOTE: <C-P> also works
 " Default: ['<S-TAB>', '<Up>']
-let g:ycm_key_list_previous_completion = []
+"let g:ycm_key_list_previous_completion = []
 
 " key mapping used to invoke the completion menu for semantic completion
 " Default: <C-Space>
@@ -1100,7 +1108,7 @@ let g:ycm_key_list_previous_completion = []
 " it is safe to be loaded. This is to prevent execution of malicious code from a
 " .ycm_extra_conf.py file you didn't write.
 " Default: 1
-let g:ycm_confirm_extra_conf = 0
+"let g:ycm_confirm_extra_conf = 0
 
 " By default, YCM's filepath completion will interpret relative paths like ../
 " as being relative to the folder of the file of the currently active buffer.
@@ -1154,8 +1162,7 @@ let g:clang_user_options='|| exit 0'
 let g:clang_use_library=1
 
 " tell clang_complete where to find libclang
-let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib/'
-let g:clang_exec = '/Library/Developer/CommandLineTools/usr/bin/'
+let g:clang_library_path = '/home/wiam/Documents/spaproject-git/install/lib/'
 
 " 0 - do not do some snippets magic on code placeholders like function argument,
 "     template argument, template parameters, etc.
@@ -1206,19 +1213,48 @@ let g:haddock_browser = "/usr/bin/firefox"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Project Specific Settings
-"
-" Make sure this is always at the end of your vimrc file!
-"
+
+"Project Specific Settings
+
+"Make sure this is always at the end of your vimrc file!
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" include user-specific settings
-if filereadable("~/.vimrc")
- source ~/.vimrc
-endif
+"include user-specific settings
+"if filereadable("~/.vimrc")
+ "source ~/.vimrc
+"endif
 
-" include per-project settings
-if filereadable(".project.vim")
- source .project.vim
-endif
+"include per-project settings
+"if filereadable(".project.vim")
+ "source .project.vim
+"endif
+
+"set nocompatible              be iMproved, required
+"filetype off                  required
+
+"set the runtime path to include Vundle and initialize
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+"alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+"let Vundle manage Vundle, required
+"Plugin 'gmarik/Vundle.vim'
+"Plugin 'Valloric/YouCompleteMe'
+
+
+"All of your Plugins must be added before the following line
+"call vundle#end()            required
+"filetype plugin indent on    required
+"To ignore plugin indent changes, instead use:
+"filetype plugin on
+
+"Brief help
+":PluginList       - lists configured plugins
+":PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+":PluginSearch foo - searches for foo; append `!` to refresh local cache
+":PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+
+"see :h vundle for more details or wiki for FAQ
+"Put your non-Plugin stuff after this line
