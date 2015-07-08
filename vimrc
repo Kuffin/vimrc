@@ -34,13 +34,14 @@ filetype plugin indent off
 call vundle#begin('~/.vim/vundle')
 
 " Plugins
-Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'derekwyatt/vim-fswitch'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-scripts/taglist.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'derekwyatt/vim-fswitch'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'vim-scripts/taglist.vim'
 
 call vundle#end()
 
