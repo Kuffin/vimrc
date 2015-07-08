@@ -23,19 +23,17 @@ To install all mentioned plugins, simply do `:PluginInstall`.
 
 ### User-specific ~/.vimrc (**DEPRECATED**)
 
-This vimrc automatically sources a `~/.vimrc`, if available.
-Make sure, the command to source `~/.vimrc` remains at the end of this vimrc,
-otherwise user-specific commands may be overwritten.
+This vimrc automatically sources a `~/.vimrc`, if available.  Make sure, the command to source `~/.vimrc` remains at the
+end of this vimrc, otherwise user-specific commands may be overwritten.
 
-*IMPORTANT:* If you store the vimrc as `~/.vimrc`, you have to remove the line
-that sources `~/.vimrc`, else there is a cyclic dependence!
+**IMPORTANT:** If you store the vimrc as `~/.vimrc`, you have to remove the line that sources `~/.vimrc`, else there is
+a cyclic dependence!
 
 
 ### Project-specific vimrc
 
-When *VIm* starts, it auomatically sources the `.project.vim` file from the
-current directory, if available.  This allows you to adapt *VIm* to specific
-projects.
+When *VIm* starts, it auomatically sources the `.project.vim` file from the current directory, if available.  This
+allows you to adapt *VIm* to specific projects.
 
 
 Keymap
@@ -71,10 +69,10 @@ Keymap
 Status Line
 -----------
 
-The status line is kept minimalistic. I didn't want a blown-up thing like Powerline.
-For this reason everything is left aligned.
-When you intermix tabs with white spaces for indentation, have trailing white spaces, or have lines longer than
-text width, the status line will show a short warning. (See Screenshot #5)
+The status line is kept minimalistic. I didn't want a blown-up thing like Powerline.  For this reason everything is left
+aligned.
+When you intermix tabs with white spaces for indentation, have trailing white spaces, or have lines longer than text
+width, the status line will show a short warning. (See Screenshot #2)
 
 Commands
 --------
@@ -93,22 +91,17 @@ Used Plugins
 ------------
 
 * Spell
-* Clang Complete (not in use)
 * YouCompleteMe
-* Alternate file
+* FSwitch
 * Taglist
-* VIm LaTeX Suite
 * NERD Tree
-* NERD_commenter
+* NERD Commenter
 * Solarized Color Scheme
 
 
 Screenshots
 -----------
 
-![Screenshot 1](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/1.png "Screenshot 1")
-![Screenshot 2](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/2.png "Screenshot 2")
-![Screenshot 3](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/3.png "Screenshot 3")
-With Solarized Color Scheme
-![Screenshot 4](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/4.png "Screenshot 4")
-![Screenshot 5](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/5.png "Screenshot 5")
+![Screenshot 1](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/1.png "General Look&Feel")
+![Screenshot 2](https://raw.githubusercontent.com/ImmanuelHaffner/vimrc/master/screenshots/2.png "Statusbar with useful
+feedback")
