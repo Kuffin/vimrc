@@ -41,6 +41,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'vim-scripts/DoxygenToolkit.vim'
 Plugin 'vim-scripts/taglist.vim'
 
 call vundle#end()
