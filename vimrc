@@ -407,11 +407,13 @@ onoremap q <Esc>
 " <F2>  - NERD Tree
 nnoremap <silent> <F2> :NERDTree<CR>
 
-" <F5>  - toggle the tag list plugin window
-map <silent> <F5> :TlistUpdate<CR>:TlistToggle<CR>
-
-" <F6>  - Show the compiler messages
+" <F5> - compile and show messages
+map <silent> <F5> :make<CR>:cl<CR>
+" <F6> - Show the compiler messages
 nnoremap <silent> <F6> :cl<CR>
+" <F7> - toggle the tag list plugin window
+map <silent> <F7> :TlistUpdate<CR>:TlistToggle<CR>
+
 
 " <F12> - insert the current date and time
 inoremap <silent> <F12> <C-R>=strftime('%c')<CR>
