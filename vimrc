@@ -253,10 +253,10 @@ set smartcase
 set foldmethod=marker
 
 " Set the number of screen line above which a fold can be displayed closed.
-set foldminlines=20
+set foldminlines=3
 
 " Define the maximum nesting of folds (for the 'indent' and 'syntax' methods).
-set foldnestmax=1
+set foldnestmax=2
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -296,7 +296,7 @@ set concealcursor="nc"
 "
 " Format options
 "
-"
+"{{{
 " This is a sequence of letters which describes how automatic formatting is
 " to be done.
 "
@@ -315,6 +315,8 @@ set concealcursor="nc"
 " l         Long lines are not broken in insert mode: When a line was longer
 "           than 'textwidth' when the insert command started, Vim does not
 "           automatically format it.
+"}}}
+"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set formatoptions=c,q,r,l
 
@@ -334,7 +336,7 @@ command! -nargs=1 V :vertical resize <args>
 "
 " Custom keymaps
 "
-""{{{
+"{{{
 " {cmd} {attr} {lhs} {rhs}
 "
 " {cmd} : of the form <?>map, <?>noremap or <?>unmap,
@@ -390,7 +392,8 @@ command! -nargs=1 V :vertical resize <args>
 "   <Home>         Home
 "   <End>          End
 "   <PageUp>       page-up
-"   <PageDown>     page-down"}}}
+"   <PageDown>     page-down
+"}}}
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
