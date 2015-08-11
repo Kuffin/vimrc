@@ -37,6 +37,7 @@ call vundle#begin('~/.vim/vundle')
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'gmarik/Vundle.vim'
+Plugin 'jiangmiao/auto-pairs.git'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
@@ -566,6 +567,15 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:EclimCompletionMethod = 'omnifunc'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Auto-Pairs
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:AutoPairsFlyMode = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
