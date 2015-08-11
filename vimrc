@@ -1,42 +1,67 @@
-" All system-wide defaults are set in $VIMRUNTIME/archlinux.vim (usually
-" just /usr/share/vim/vimfiles/archlinux.vim) and sourced by the call to
-" :runtime you can find below.  If you wish to change any of those
-" settings, you should do it in this file (/etc/vimrc), since archlinux.vim
-" will be overwritten everytime an upgrade of the vim packages is
-" performed.  It is recommended to make changes after sourcing
-" archlinux.vim since it alters the value of the 'compatible' option.
+" All system-wide defaults are set in $VIMRUNTIME/archlinux.vim (usually just /usr/share/vim/vimfiles/archlinux.vim) and
+" sourced by the call to :runtime you can find below.  If you wish to change any of those settings, you should do it in
+" this file (/etc/vimrc), since archlinux.vim will be overwritten everytime an upgrade of the vim packages is performed.
+" It is recommended to make changes after sourcing archlinux.vim since it alters the value of the 'compatible' option.
 
-" This line should not be removed as it ensures that various options are
-" properly set to work with the Vim-related packages.
+" This line should not be removed as it ensures that various options are properly set to work with the Vim-related
+" packages.
 runtime! archlinux.vim
 
-" If you prefer the old-style vim functionalty, add 'runtime!
-" vimrc_example.vim'
+" If you prefer the old-style vim functionalty, add 'runtime! vimrc_example.vim'
 "
-" Or better yet, read /usr/share/vim/vim72/vimrc_example.vim or the vim
-" manual and configure vim to your own liking!
+" Or better yet, read /usr/share/vim/vim72/vimrc_example.vim or the vim manual and configure vim to your own liking!
 
-" >>> Note: to set any value to default, comment the line with \"
-"           to disable a setting, add "no" to the beginning.
+" >>> Note: to set any value to default, comment the line with \" to disable a setting, add "no" to the beginning.
 
 " Disable compatibility mode
 set nocompatible
+
+" include global settings
+"if filereadable("/etc/vimrc")
+ "source /etc/vimrc
+"endif
+
+
+" Enable mouse itegration
+set mouse=a
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Vundle
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+syntax off
+filetype plugin indent off
+
+call vundle#begin('~/.vim/vundle')
+
+" Plugins
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'derekwyatt/vim-fswitch'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'vim-scripts/DoxygenToolkit.vim'
+Plugin 'vim-scripts/taglist.vim'
+
+call vundle#end()
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" General behavior of Vim
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Enable syntax highlighting.
 syntax on
 
 " Enable filetype specific plugins and indentation
 filetype plugin indent on
-
-" Enable mouse itegration
-set mouse=a
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" General behavior of Vim
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set the standard encoding
 set encoding=utf8
@@ -47,7 +72,7 @@ set cmdheight=1
 " Always show the status line
 set laststatus=2
 
-" Always show tab line
+" Show tab line if there are at least two pages
 set showtabline=1
 
 " Show (partial) command in status line
@@ -56,9 +81,20 @@ set showcmd
 " Show line numbers.
 set number
 
+" Show offset
+set relativenumber
+
 " Show the line and column number of the cursor position, seperated by a
 " comma.
 set ruler
+
+" Makes Vim ask for a confirmation instead of showing an error message.
+set confirm
+
+" Set the maximum width of text that is being insterd without breaking it
+" to a new line.
+" Setting this value to '0' disables this option.
+set textwidth=120
 
 " Set whether a line that doesn't fit into a window is wrapped around at
 " the end of the window.
@@ -68,8 +104,26 @@ set wrap
 " the last character in the line.
 set linebreak
 
-" Makes Vim ask for a confirmation instead of showing an error message.
-set confirm
+
+" Show a vertical lign at column 80
+set colorcolumn=121
+
+" Display certain whitespace characters
+set listchars=tab:»-,extends:@,trail:·
+set list
+
+" Show the cursor line by default
+set cursorline
+
+" Make 'word' stop at underscores. Does not affect 'Word'.
+"set iskeyword-=_
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Window Properties
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define the default width of the current window
 set columns=100
@@ -88,18 +142,27 @@ set colorcolumn=81
 " Define the minimal height for a window
 "set winminheight=50
 
-" Set the maximum width of text that is being insterd without breaking it
-" to a new line.
-" Setting this value to '0' disables this option.
-set textwidth=80
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Wildmenu
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Set Wildmenu
+set wildmenu
+
+" Make the wild menu auto complete to the longest substring of all matches
+set wildmode=list:longest
 
 " A list of file patterns. A file that matches with one of these patterns is
 " ignored when expanding wildcards, completing file or directory names, etc.
 set wildignore+=*.o,*.d,*.obj,*.bak,*.exe,*.aux,*.toc,*.backup
+set wildignore+=.*.swo,.*.swp,.clang_complete,.project.vim,.ycm_extra_conf.py,project.debug,tags,rubber.cache,*.o,*.pyc
 
 " Display certain whitespace characters
-"set listchars=tab:»-,extends:@,trail:·
-"set list
+set listchars=tab:»-,extends:@,trail:·
+set list
 
 " Make completion case-insensitive
 set wildignorecase
@@ -111,38 +174,33 @@ set cursorline
 "set iskeyword-=_
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Persistent undo
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set undodir=$HOME/.vim/undo/            " where to store undofiles
-if has('persistent_undo') && exists("&undodir")
-  set undofile                            " enable undofile
-  set undolevels=500                      " max undos stored
-  set undoreload=10000                    " buffer stored undos
-endif
+set undofile                            " enable undofile
+set undolevels=500                      " max undos stored
+set undoreload=10000                    " buffer stored undos
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Scrolling properties
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set leading/trailing lines for the cursor when moving vertically.
 set scrolloff=7
 
 " Set leading/trailing columns for the cursor when moving horizontally.
-set sidescrolloff=20
+set sidescrolloff=15
 
-" Set the amount of columns to scroll horizontally, when the end of the
-" window is reached.
-set sidescroll=35
+" Set the amount of columns to scroll horizontally, when the end of the window is reached.
+set sidescroll=1
 
-" Set Wildmenu
-set wildmenu
 
 " Make the wild menu auto complete to the longest substring of all matches
 set wildmode=list:longest
@@ -152,7 +210,7 @@ set wildmode=list:longest
 "
 " Indentation rules
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Number of spaces a <TAB> counts for
 set tabstop=4
@@ -175,22 +233,16 @@ set shiftwidth=4
 " insert a real tab when 'expandtab' is on, use CTRL-V <Tab>.
 "set expandtab
 
-" Copy indent from current line when starting a new line (typing <CR> in
-" Insert Mode or when using the "o" or "O" command).
+" Copy indent from current line when starting a new line (typing <CR> in Insert Mode or when using the "o" or "O"
+" command).
 set autoindent
 
-" When a bracket is inserted, briefly jump to the matching one. The jump is
-" only done if the match can be seen on the screen. The time to show the
-" match can be set with "matchtime".
-" set showmatch
-" set matchtime 5
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Search properties
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Allow 'search next' to jump back to the beginning of the file if the end
 " was reached (equivalent for 'search previous').
@@ -206,27 +258,21 @@ set incsearch
 " Ignore the case when searching
 set ignorecase
 
-" When searching, try to be smart about cases
-" set smartcase
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " User-defined folding
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define where to create folds
-"set fdm=manual
+set foldmethod=marker
 
 " Set the number of screen line above which a fold can be displayed closed.
-"set fml=5
+set foldminlines=3
 
 " Define the maximum nesting of folds (for the 'indent' and 'syntax' methods).
-"set fdn=3
-
-" Specify the text displayed for a closed fold.
-"set fdt=
+set foldnestmax=2
 
 set nofoldenable    " disable folding
 
@@ -238,7 +284,7 @@ set nofoldenable    " disable folding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Disable spellchecking by default
-set spell
+set nospell
 
 " Set languages for spell checking
 set spelllang=en
@@ -258,26 +304,15 @@ set spelllang=en
 "
 " Vim auto completion
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set completeopt=menu,menuone,longest,preview
+" Don't set completeopt, as YCM overrides it anyway
 
 " Limit popup menu height
 set pumheight=15
 
-au CursorMovedI,InsertLeave * if pumvisible() == 0|sil! pclose|endif
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Colors & Highlighting
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" When set to "dark", Vim will try to use colors that look good on a dark
-" background. When set to "light", Vim will try to use colors that look good
-" on a light background. Any other value is illegal.
-set background=dark
+" Close invisible preview windows
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
 " Define a cholor scheme
 "
@@ -305,55 +340,14 @@ colorscheme industry
 " set the color of the popup menu
 highlight Pmenu guibg=brown gui=bold
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Solarized
+" Conceal feature configuration
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" This is set to 16 by default, meaning that Solarized will attempt to use the
-" standard 16 colors of your terminal emulator. You will need to set those
-" colors to the correct Solarized values either manually or by importing one of
-" the many colorscheme available for popular terminal emulators and Xresources.
-"g:solarized_termcolors=256
-
-" If you use a terminal emulator with a transparent background and Solarized
-" isn't displaying the background color transparently, set this to 1 and
-" Solarized will use the default (transparent) background of the terminal
-" emulator. urxvt required this in my testing; iTerm2 did not.
-"g:solarized_termtrans =   0       |   1
-
-" For test purposes only; forces Solarized to use the 256 degraded color mode to
-" test the approximate color values for accuracy.
-"g:solarized_degrade   =   0       |   1
-
-" If you wish to stop Solarized from displaying bold, underlined or italicized
-" typefaces, simply assign a zero value to the appropriate variable, for
-" example: let g:solarized_italic=0
-"g:solarized_bold      =   1       |   0
-"g:solarized_underline =   1       |   0
-"g:solarized_italic    =   1       |   0
-
-" Stick with normal! It's been carefully tested. Setting this option to high or
-" low does use the same Solarized palette but simply shifts some values up or
-" down in order to expand or compress the tonal range displayed.
-"g:solarized_contrast  =   "normal"|   "high" or "low"
-
-" Special characters such as trailing whitespace, tabs, newlines, when displayed
-" using :set list can be set to one of three levels depending on your needs.
-" Default value is normal with high and low options.
-"g:solarized_visibility=   "normal"|   "high" or "low"
-"g:solarized_visibility="low"
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Concealed feature configuration
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set conceallevel
-set cole=0
+set conceallevel=0
 
 " Set concealcursor strategy
 "
@@ -361,133 +355,115 @@ set cole=0
 " v - Visual mode
 " i - Insert mode
 " c - Command line editing
-set cocu="nc"
+set concealcursor="nc"
 
-" Set Conceal highlight
-hi Conceal ctermbg=black ctermfg=white guibg=black guifg=white
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" User-defined highlighting
+" User-defined statusline
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Show search results in red with an underline and without background
-hi MatchParen ctermbg=red ctermfg=black guibg=red guifg=black
+"recalculate the long line warning when idle and after saving
+autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
 
-hi TabLineSel ctermbg=red
-hi PMenuSel ctermbg=brown
-hi StatusLine ctermfg=brown
-hi StatusLineNC ctermfg=gray
-hi CursorColumn term=reverse ctermbg=1
+"return a warning for "long lines" where "long" is either &textwidth or 80 (if
+"no &textwidth is set)
+"
+"return '' if no long lines
+"return '[#x,my,$z] if long lines are found, were x is the number of long
+"lines, y is the median length of the long lines and z is the length of the
+"longest line
+function! StatuslineLongLineWarning()
+    if !exists("b:statusline_long_line_warning")
+        let long_line_lens = s:LongLines()
 
+        if len(long_line_lens) > 0
+            let b:statusline_long_line_warning = "[" .
+                        \ '#' . len(long_line_lens) . "," .
+                        \ 'm' . s:Median(long_line_lens) . "," .
+                        \ '$' . max(long_line_lens) . "]"
+        else
+            let b:statusline_long_line_warning = ""
+        endif
+    endif
+    return b:statusline_long_line_warning
+endfunction
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""
-"" User-defined statusline
-""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"return a list containing the lengths of the long lines in this buffer
+function! s:LongLines()
+    let threshold = (&tw ? &tw : 80)
+    let spaces = repeat(" ", &ts)
+
+    let long_line_lens = []
+
+    let i = 1
+    while i <= line("$")
+        let len = strlen(substitute(getline(i), '\t', spaces, 'g'))
+        if len > threshold
+            call add(long_line_lens, len)
+        endif
+        let i += 1
+    endwhile
+
+    return long_line_lens
+endfunction
+
+"find the median of the given array of numbers
+function! s:Median(nums)
+    let nums = sort(a:nums)
+    let l = len(nums)
+
+    if l % 2 == 1
+        let i = (l-1) / 2
+        return nums[i]
+    else
+        return (nums[l/2] + nums[(l/2)-1]) / 2
+    endif
+endfunction
+
 "
-""recalculate the long line warning when idle and after saving
-"autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
+" Set statusline
 "
-""return a warning for "long lines" where "long" is either &textwidth or 80 (if
-""no &textwidth is set)
-""
-""return '' if no long lines
-""return '[#x,my,$z] if long lines are found, were x is the number of long
-""lines, y is the median length of the long lines and z is the length of the
-""longest line
-"function! StatuslineLongLineWarning()
-"    if !exists("b:statusline_long_line_warning")
-"        let long_line_lens = s:LongLines()
-"
-"        if len(long_line_lens) > 0
-"            let b:statusline_long_line_warning = "[" .
-"                        \ '#' . len(long_line_lens) . "," .
-"                        \ 'm' . s:Median(long_line_lens) . "," .
-"                        \ '$' . max(long_line_lens) . "]"
-"        else
-"            let b:statusline_long_line_warning = ""
-"        endif
-"    endif
-"    return b:statusline_long_line_warning
-"endfunction
-"
-""return a list containing the lengths of the long lines in this buffer
-"function! s:LongLines()
-"    let threshold = (&tw ? &tw : 80)
-"    let spaces = repeat(" ", &ts)
-"
-"    let long_line_lens = []
-"
-"    let i = 1
-"    while i <= line("$")
-"        let len = strlen(substitute(getline(i), '\t', spaces, 'g'))
-"        if len > threshold
-"            call add(long_line_lens, len)
-"        endif
-"        let i += 1
-"    endwhile
-"
-"    return long_line_lens
-"endfunction
-"
-""find the median of the given array of numbers
-"function! s:Median(nums)
-"    let nums = sort(a:nums)
-"    let l = len(nums)
-"
-"    if l % 2 == 1
-"        let i = (l-1) / 2
-"        return nums[i]
-"    else
-"        return (nums[l/2] + nums[(l/2)-1]) / 2
-"    endif
-"endfunction
-"
-""
-"" Set statusline
-""
-"
+
+set statusline=
+
 "set statusline=
-"
-""set statusline=
-""set statusline+=%#todo#  "switch to todo highlight
-""set statusline+=%F       "full filename
-""set statusline+=%#error# "switch to error highlight
-""set statusline+=%y       "filetype
-""set statusline+=%*       "switch back to normal statusline highlight
-""set statusline+=%l       "line number
-"
-""set statusline+=%F                                       " full filename
-"set statusline+=%{expand('%')}                        " relative path of current file
-""set statusline+=%#error#%{expand('%:f')}%* " last extension
-""set statusline+=%#error#%{expand('%:t:e')}%*                         " name of file (without extension)
-""set statusline+=%{fnamemodify(bufname('%'),':h')}/        " relative path
-""set statusline+=%{fnamemodify(bufname('%'),':t:r:s?^\\..*$??')} " filename without last extension
-""set statusline+=%#error#%{fnamemodify(bufname('%'),':t:s?^.*\\.?.?')}%* " last extension
-"set statusline+=\ [
-"set statusline+=%{strlen(&fenc)?&fenc:'none'},  " file encoding
-"set statusline+=%{&ff}                          " file format
-"set statusline+=]
-"set statusline+=%y                              " filetype
-"set statusline+=%h                              " help file flag
-"set statusline+=%#error#%m%*                    " modified flag
-"set statusline+=%r                              " read-only flag
-""set statusline+=\ \ -\ %{getcwd()}               " print CWD
-"set statusline+=%=                              " left/right seperator
-"set statusline+=%c,                             " cursor column
-"set statusline+=%#error#%l%*/%L                           " cursor line/total lines
-"set statusline+=\ %P                            " percent through file
+"set statusline+=%#todo#  "switch to todo highlight
+"set statusline+=%F       "full filename
+"set statusline+=%#error# "switch to error highlight
+"set statusline+=%y       "filetype
+"set statusline+=%*       "switch back to normal statusline highlight
+"set statusline+=%l       "line number
+
+"set statusline+=%F                                       " full filename
+set statusline+=%{expand('%')}                        " relative path of current file
+"set statusline+=%#error#%{expand('%:f')}%* " last extension
+"set statusline+=%#error#%{expand('%:t:e')}%*                         " name of file (without extension)
+"set statusline+=%{fnamemodify(bufname('%'),':h')}/        " relative path
+"set statusline+=%{fnamemodify(bufname('%'),':t:r:s?^\\..*$??')} " filename without last extension
+"set statusline+=%#error#%{fnamemodify(bufname('%'),':t:s?^.*\\.?.?')}%* " last extension
+set statusline+=\ [
+set statusline+=%{strlen(&fenc)?&fenc:'none'},  " file encoding
+set statusline+=%{&ff}                          " file format
+set statusline+=]
+set statusline+=%y                              " filetype
+set statusline+=%h                              " help file flag
+set statusline+=%#error#%m%*                    " modified flag
+set statusline+=%r                              " read-only flag
+"set statusline+=\ \ -\ %{getcwd()}               " print CWD
+set statusline+=%=                              " left/right seperator
+set statusline+=%c,                             " cursor column
+set statusline+=%#error#%l%*/%L                           " cursor line/total lines
+set statusline+=\ %P                            " percent through file
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Format options
 "
-"
+"{{{
 " This is a sequence of letters which describes how automatic formatting is
 " to be done.
 "
@@ -510,31 +486,11 @@ hi CursorColumn term=reverse ctermbg=1
 set formatoptions=t,c,q,r,l
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " User-defined commands
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Toggles spell
-function! SpellToggle()
-  if(&spell == 1)
-    set nospell
-    echo "Spell: Off"
-  else
-    set spell
-    echo "Spell: On"
-  endif
-endfunc
-
-" Delete trailing whitespace and tabs at the end of each line
-command! DeleteTrailingWs :%s/\s\+$//
-
-" Substitute all tabs by two whitespaces
-command! Untab2 :%s/\t/  /g
-
-" Substitute all tabs by four whitespaces
-command! Untab4 :%s/\t/  /g
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Alias to vertically resize the current window
 "command! -nargs=+ Say :echo <q-args>
@@ -559,7 +515,7 @@ set norelativenumber
 "
 " Custom keymaps
 "
-"
+"{{{
 " {cmd} {attr} {lhs} {rhs}
 "
 " {cmd} : of the form <?>map, <?>noremap or <?>unmap,
@@ -616,46 +572,33 @@ set norelativenumber
 "   <End>          End
 "   <PageUp>       page-up
 "   <PageDown>     page-down
+"}}}
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-""""""""""""""""""""""""""""""""""""""""
 " Alternative Escape key
-""""""""""""""""""""""""""""""""""""""""
-
 inoremap q <Esc>
 nnoremap q <Esc>
 vnoremap q <Esc>
 cnoremap q <Esc>
 onoremap q <Esc>
 
-
-""""""""""""""""""""""""""""""""""""""""
-" Function Keys
-""""""""""""""""""""""""""""""""""""""""
-
 " <F2>  - NERD Tree
 nnoremap <silent> <F2> :NERDTree<CR>
 
-" <F3>  - toggle spell on/off
-nnoremap <silent> <F3> :call SpellToggle()<CR>
-
-" <F5>  - toggle the tag list plugin window
-map <silent> <F5> :TlistUpdate<CR>:TlistToggle<CR>
-
-" <F6>  - Show the compiler messages
+" <F5> - compile and show messages
+map <silent> <F5> :make<CR>:cl<CR>
+" <F6> - Show the compiler messages
 nnoremap <silent> <F6> :cl<CR>
+" <F7> - toggle the tag list plugin window
+map <silent> <F7> :TlistUpdate<CR>:TlistToggle<CR>
+
 
 " <F12> - insert the current date and time
 inoremap <silent> <F12> <C-R>=strftime('%c')<CR>
 cnoremap <silent> <F12> <C-R>=strftime('%c')<CR>
 
-
-""""""""""""""""""""""""""""""""""""""""
-" Shortcut for arraging text to 'textwidth'
-""""""""""""""""""""""""""""""""""""""""
-
+" Shortcut for arranging text to 'textwidth'
 nnoremap w gwgw
 inoremap w <C-o>gwgw<CR>
 xnoremap w gw
@@ -686,108 +629,26 @@ nnoremap <C-N> :tabnew <C-D>
 " <A-N> - create new vertical window and prompt file open dialog
 nnoremap n <C-W>v<C-W>l:edit <C-D>
 
-" ,t  - open the alternate file in a new tab
-nnoremap <silent> ,t :AT<CR>
-
-" ,t  - open the alternate file in a new vertical window
-nnoremap <silent> ,v :AV<CR>
+" Open the alternate file
+nnoremap <silent> ,ff :FSHere<CR>
+nnoremap <silent> ,fh <C-W>v:FSHere<CR>
+nnoremap <silent> ,fk <C-W>s:FSHere<CR>
+nnoremap <silent> ,fj <C-W>s<C-W>j:FSHere<CR>
+nnoremap <silent> ,fl <C-W>v<C-W>l:FSHere<CR>
 
 " ,c  - toggle comment (uses NERD_commenter)
 nnoremap <silent> <C-C> :call NERDComment(0, "toggle")<CR>
-vnoremap <silent> <C-C> <ESC>:call NERDComment(1, "toggle")<CR>
+vnoremap <silent> <C-C> :call NERDComment(1, "toggle")<CR>
 
 " <A-J> - Open tag list selection menu
 nnoremap j :tselect <C-R>=expand("<cword>")<CR><CR>
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap <silent> * :call VisualSelection('f')<CR>nN
-vnoremap <silent> # :call VisualSelection('b')<CR>nN
-
-function! VisualSelection(direction) range
-  let l:saved_reg = @"
-  execute "normal! vgvy"
-
-  let l:pattern = escape(@", '\\/.*$^~[]')
-  let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-  if a:direction == 'b'
-    execute "normal ?" . l:pattern . "^M"
-  elseif a:direction == 'f'
-    execute "normal /" . l:pattern . "^M"
-  elseif a:direction == 'gv'
-    call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-  elseif a:direction == 'replace'
-    call CmdLine("%s" . '/'. l:pattern . '/')
-  endif
-
-  let @/ = l:pattern
-  let @" = l:saved_reg
-endfunction
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Hexmode
-"
-" View and edit files byte-wise.
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" ex command for toggling hex mode - define mapping if desired
-command -bar Hexmode call ToggleHex()
-
-" helper function to toggle hex mode
-function ToggleHex()
-  " hex mode should be considered a read-only operation
-  " save values for modified and read-only for restoration later,
-  " and clear the read-only flag for now
-  let l:modified=&mod
-  let l:oldreadonly=&readonly
-  let &readonly=0
-  let l:oldmodifiable=&modifiable
-  let &modifiable=1
-  if !exists("b:editHex") || !b:editHex
-    " save old options
-    let b:oldft=&ft
-    let b:oldbin=&bin
-    " set new options
-    setlocal binary " make sure it overrides any textwidth, etc.
-    silent :e " this will reload the file without trickeries
-              "(DOS line endings will be shown entirely )
-    let &ft="xxd"
-    " set status
-    let b:editHex=1
-    " switch to hex editor
-    %!xxd
-    echo "Hexmode: On"
-  else
-    " restore old options
-    let &ft=b:oldft
-    if !b:oldbin
-      setlocal nobinary
-    endif
-    " set status
-    let b:editHex=0
-    " return to normal editing
-    %!xxd -r
-    echo "Hexmode: Off"
-  endif
-  " restore values for modified and read only state
-  let &mod=l:modified
-  let &readonly=l:oldreadonly
-  let &modifiable=l:oldmodifiable
-endfunction
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Tag list
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 1
@@ -797,11 +658,11 @@ let Tlist_Sort_Type = "name"
 let Tlist_WinWidth = 80
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " LaTeX
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " latex is sorted by order
 let Tlist_tex_settings = 'latex;l:labels;s:sections;t:subsections;u:subsubsections;p:paragraphs'
@@ -833,11 +694,11 @@ let Tex_FoldedMisc=""
 
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " ProVerif
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Syntax highlighting for proverif files (SPI calculus)
 augroup filetype
@@ -846,50 +707,43 @@ augroup filetype
 augroup END
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Make
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define filetype for Makefiles
 augroup filetype
  au! BufRead,BufNewFile *Makefile* set filetype=make
- " In Makefiles don't expand tabs to spaces
- au Filetype make set noexpandtab
 augroup END
 
 " Set the default make program
 set makeprg=make\ -j4
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " C/C++
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 augroup filetype
-  au! BufNewFile,BufRead *.c,*.cpp,*.cc,*.h,*.hpp
-  set tabstop=4
-  "set expandtab
-  set softtabstop=4
-  set shiftwidth=4
-  set cindent
+  au! BufNewFile,BufRead *.c,*.cpp,*.cc,*.h,*.hpp set cindent
 augroup END
 
 "
 " Allows to jump to the alternate file, e.g. the header file for a C file
 "
 let g:alternateNoDefaultAlternate = 1
-let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,cpp.h"
+let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,hpp,h"
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " LLVM
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Enable syntax highlighting for LLVM files. To use, copy
 " utils/vim/llvm.vim to ~/.vim/syntax .
@@ -913,7 +767,7 @@ augroup END
 " suggestions are triggered
 " NOTE: this option is not used for semantic completion
 " Default: 2
-"let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_min_num_of_chars_for_completion = 3
 
 " minimum number of characters that a completion candidate coming from the
 " identifier completer must have to be shown in the popup menu
@@ -956,12 +810,12 @@ augroup END
 " YCM will use the value of this option as the symbol for errors in the Vim
 " gutter.
 " Default: >>
-"let g:ycm_error_symbol = '<{'
+let g:ycm_error_symbol = '<{'
 
 " YCM will use the value of this option as the symbol for warnings in the Vim
 " gutter.
 " Default: >>
-"let g:ycm_warning_symbol = '>>'
+let g:ycm_warning_symbol = '>>'
 
 " put icons in Vim's gutter on lines that have a diagnostic set
 " NOTE: turning this off will also turn off the YcmErrorLine and YcmWarningLine
@@ -977,7 +831,7 @@ augroup END
 " echo the text of the diagnostic present on the current line when you move your
 " cursor to that line
 " Default: 1
-"let g:ycm_echo_current_diagnostic = 1
+let g:ycm_echo_current_diagnostic = 1
 
 " populate the location list automatically every time it gets new diagnostic
 " data
@@ -1077,18 +931,18 @@ augroup END
 " maximum number of diagnostics shown to the user when errors or warnings are
 " detected
 " Default: 30
-"let g:ycm_max_diagnostics_to_display = 10
+let g:ycm_max_diagnostics_to_display = 10
 
 " This option controls the key mappings used to select the first completion
 " string. Invoking any of them repeatedly cycles forward through the completion
 " list.
 " NOTE: <C-N> also works
 " Default: ['<TAB>', '<Down>']
-"let g:ycm_key_list_select_completion = []
+let g:ycm_key_list_select_completion = []
 
 " NOTE: <C-P> also works
 " Default: ['<S-TAB>', '<Up>']
-"let g:ycm_key_list_previous_completion = []
+let g:ycm_key_list_previous_completion = []
 
 " key mapping used to invoke the completion menu for semantic completion
 " Default: <C-Space>
@@ -1108,7 +962,7 @@ augroup END
 " it is safe to be loaded. This is to prevent execution of malicious code from a
 " .ycm_extra_conf.py file you didn't write.
 " Default: 1
-"let g:ycm_confirm_extra_conf = 0
+let g:ycm_confirm_extra_conf = 0
 
 " By default, YCM's filepath completion will interpret relative paths like ../
 " as being relative to the folder of the file of the currently active buffer.
@@ -1139,18 +993,18 @@ augroup END
 
 " 0 - do not complete after ->, ., ::
 " 1 - automatically complete after ->, ., ::
-let g:clang_complete_auto = 1
+let g:clang_complete_auto = 0
 
 " 0 - Select nothing
 " 1 - Automatically select the first entry in the popup menu, but do not
 " insert it into the code.
 " 2 - Automatically select the first entry in the popup menu, and insert it
 " into the code.
-let g:clang_auto_select = 1
+let g:clang_auto_select = 0
 
 " 0 - do not open quickfix window on error.
 " 1 - open quickfix window on error.
-let g:clang_complete_copen=1
+let g:clang_complete_copen=0
 
 " 0 - do not highlight the warnings and errors
 " 1 - highlight the warnings and errors the same way clang does it
@@ -1162,31 +1016,27 @@ let g:clang_user_options='|| exit 0'
 let g:clang_use_library=1
 
 " tell clang_complete where to find libclang
-let g:clang_library_path = '/home/wiam/Documents/spaproject-git/install/lib/'
+let g:clang_library_path = '/usr/lib/'
 
 " 0 - do not do some snippets magic on code placeholders like function argument,
 "     template argument, template parameters, etc.
 " 1 - do some snippets magic on code placeholders like function argument,
 "     template argument, template parameters, etc.
-let g:clang_snippets = 1
+let g:clang_snippets = 0
 
 " The snippets engine (clang_complete, ultisnips... see the snippets
 " subdirectory).
-let g:clang_snippets_engine = "clang_complete"
+"let g:clang_snippets_engine = "clang_complete"
 
-let g:clang_conceal_snippets=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" CTags
+" Eclim
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-com! Ctags !ctags -R --sort=yes --c-kinds=+fmstp --fields=+amS --language-force=C
-com! Cpptags !ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++
-com! CCpptags !ctags -R --sort=yes --fields=+iaS --extra=+q
-com! Cstags !ctags -R --sort=yes --c#-kinds=+p --fields=+iaS --extra=+q --language-force=C#
+let g:EclimCompletionMethod = 'omnifunc'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1213,14 +1063,14 @@ let g:haddock_browser = "/usr/bin/firefox"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"Project Specific Settings
-
-"Make sure this is always at the end of your vimrc file!
-
+"
+" Project Specific Settings
+"
+" Make sure this is always at the end of your vimrc file!
+"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"include user-specific settings
+" include user-specific settings
 "if filereadable("~/.vimrc")
  "source ~/.vimrc
 "endif
@@ -1229,32 +1079,3 @@ let g:haddock_browser = "/usr/bin/firefox"
 "if filereadable(".project.vim")
  "source .project.vim
 "endif
-
-"set nocompatible              be iMproved, required
-"filetype off                  required
-
-"set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-"alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-"let Vundle manage Vundle, required
-"Plugin 'gmarik/Vundle.vim'
-"Plugin 'Valloric/YouCompleteMe'
-
-
-"All of your Plugins must be added before the following line
-"call vundle#end()            required
-"filetype plugin indent on    required
-"To ignore plugin indent changes, instead use:
-"filetype plugin on
-
-"Brief help
-":PluginList       - lists configured plugins
-":PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-":PluginSearch foo - searches for foo; append `!` to refresh local cache
-":PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-
-"see :h vundle for more details or wiki for FAQ
-"Put your non-Plugin stuff after this line
