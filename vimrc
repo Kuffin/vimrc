@@ -5,7 +5,7 @@
 
 " This line should not be removed as it ensures that various options are properly set to work with the Vim-related
 " packages.
-runtime! archlinux.vim
+"runtime! archlinux.vim
 
 " If you prefer the old-style vim functionalty, add 'runtime! vimrc_example.vim'
 "
@@ -35,6 +35,7 @@ set mouse=a
 syntax off
 filetype plugin indent off
 
+set rtp+=~/.vim/vundle/Vundle.vim
 call vundle#begin('~/.vim/vundle')
 
 " Plugins
