@@ -30,7 +30,7 @@ set background=dark
 "   torte
 "   zellner
 "
-colorscheme solarized
+"colorscheme solarized
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

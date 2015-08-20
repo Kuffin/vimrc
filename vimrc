@@ -26,11 +26,11 @@ set nocompatible
 set mouse=a
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Vundle
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 syntax off
 filetype plugin indent off
@@ -53,11 +53,11 @@ Plugin 'vim-scripts/taglist.vim'
 call vundle#end()
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " General behavior of Vim
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Enable syntax highlighting.
 syntax on
@@ -84,7 +84,8 @@ set showcmd
 set number
 
 " Show offset
-set relativenumber
+"set relativenumber
+set norelativenumber
 
 " Show the line and column number of the cursor position, seperated by a
 " comma.
@@ -96,7 +97,7 @@ set confirm
 " Set the maximum width of text that is being insterd without breaking it
 " to a new line.
 " Setting this value to '0' disables this option.
-set textwidth=120
+set textwidth=80
 
 " Set whether a line that doesn't fit into a window is wrapped around at
 " the end of the window.
@@ -106,14 +107,6 @@ set wrap
 " the last character in the line.
 set linebreak
 
-
-" Show a vertical lign at column 80
-set colorcolumn=121
-
-" Display certain whitespace characters
-set listchars=tab:»-,extends:@,trail:·
-set list
-
 " Show the cursor line by default
 set cursorline
 
@@ -121,11 +114,11 @@ set cursorline
 "set iskeyword-=_
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Window Properties
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define the default width of the current window
 set columns=100
@@ -145,11 +138,11 @@ set colorcolumn=81
 "set winminheight=50
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Wildmenu
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set Wildmenu
 set wildmenu
@@ -176,11 +169,11 @@ set cursorline
 "set iskeyword-=_
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Persistent undo
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set undodir=$HOME/.vim/undo/            " where to store undofiles
 set undofile                            " enable undofile
@@ -188,11 +181,11 @@ set undolevels=500                      " max undos stored
 set undoreload=10000                    " buffer stored undos
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Scrolling properties
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set leading/trailing lines for the cursor when moving vertically.
 set scrolloff=7
@@ -212,7 +205,7 @@ set wildmode=list:longest
 "
 " Indentation rules
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Number of spaces a <TAB> counts for
 set tabstop=4
@@ -228,23 +221,23 @@ set shiftwidth=4
 " 'shiftwidth'. 'tabstop' is used in other places. A <BS> will delete a
 " 'shiftwidth' wide bunch of space at the start of the line.
 " What gets inserted (a <Tab> or spaces) depends on the 'expandtab' option.
-"set smarttab
+set smarttab
 
 " Use the appropriate number of spaces to insert a <Tab>.  Spaces are used
 " in indents with the '>' and '<' commands and when 'autoindent' is on. To
 " insert a real tab when 'expandtab' is on, use CTRL-V <Tab>.
-"set expandtab
+set expandtab
 
 " Copy indent from current line when starting a new line (typing <CR> in Insert Mode or when using the "o" or "O"
 " command).
 set autoindent
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Search properties
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Allow 'search next' to jump back to the beginning of the file if the end
 " was reached (equivalent for 'search previous').
@@ -261,11 +254,11 @@ set incsearch
 set ignorecase
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " User-defined folding
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define where to create folds
 set foldmethod=marker
@@ -306,12 +299,12 @@ set spelllang=en
 "
 " Vim auto completion
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Don't set completeopt, as YCM overrides it anyway
 
 " Limit popup menu height
-set pumheight=15
+set pumheight=20
 
 " Close invisible preview windows
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
@@ -337,16 +330,16 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "   torte
 "   zellner
 "
-colorscheme industry
+colorscheme solarized
 
 " set the color of the popup menu
 highlight Pmenu guibg=brown gui=bold
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Conceal feature configuration
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set conceallevel
 set conceallevel=0
@@ -488,11 +481,11 @@ set statusline+=\ %P                            " percent through file
 set formatoptions=t,c,q,r,l
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " User-defined commands
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Alias to vertically resize the current window
 "command! -nargs=+ Say :echo <q-args>
@@ -510,7 +503,6 @@ endfunc
 "autocmd InsertEnter * :set norelativenumber
 "autocmd InsertLeave * :set relativenumber
 
-set norelativenumber
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -576,7 +568,7 @@ set norelativenumber
 "   <PageDown>     page-down
 "}}}
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Alternative Escape key
 inoremap q <Esc>
@@ -646,11 +638,11 @@ vnoremap <silent> <C-C> :call NERDComment(1, "toggle")<CR>
 nnoremap j :tselect <C-R>=expand("<cword>")<CR><CR>
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Tag list
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 1
@@ -660,11 +652,11 @@ let Tlist_Sort_Type = "name"
 let Tlist_WinWidth = 80
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " LaTeX
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " latex is sorted by order
 let Tlist_tex_settings = 'latex;l:labels;s:sections;t:subsections;u:subsubsections;p:paragraphs'
@@ -696,11 +688,11 @@ let Tex_FoldedMisc=""
 
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " ProVerif
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Syntax highlighting for proverif files (SPI calculus)
 augroup filetype
@@ -709,11 +701,11 @@ augroup filetype
 augroup END
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Make
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define filetype for Makefiles
 augroup filetype
@@ -724,11 +716,11 @@ augroup END
 set makeprg=make\ -j4
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " C/C++
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 augroup filetype
   au! BufNewFile,BufRead *.c,*.cpp,*.cc,*.h,*.hpp set cindent
@@ -741,11 +733,11 @@ let g:alternateNoDefaultAlternate = 1
 let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,hpp,h"
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " LLVM
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Enable syntax highlighting for LLVM files. To use, copy
 " utils/vim/llvm.vim to ~/.vim/syntax .
@@ -812,12 +804,12 @@ let g:ycm_min_num_of_chars_for_completion = 3
 " YCM will use the value of this option as the symbol for errors in the Vim
 " gutter.
 " Default: >>
-let g:ycm_error_symbol = '<{'
+let g:ycm_error_symbol = '>>'
 
 " YCM will use the value of this option as the symbol for warnings in the Vim
 " gutter.
 " Default: >>
-let g:ycm_warning_symbol = '>>'
+let g:ycm_warning_symbol = '<>'
 
 " put icons in Vim's gutter on lines that have a diagnostic set
 " NOTE: turning this off will also turn off the YcmErrorLine and YcmWarningLine
@@ -859,7 +851,7 @@ let g:ycm_echo_current_diagnostic = 1
 
 " show the completion menu even when typing inside comments
 " Default: 0
-"let g:ycm_complete_in_comments = 0
+let g:ycm_complete_in_comments = 1
 
 " show the completion menu even when typing inside strings
 " NOTE: turned on by default so that you can use the filename completion inside
@@ -922,7 +914,7 @@ let g:ycm_echo_current_diagnostic = 1
 "let g:ycm_auto_stop_csharp_server = 1
 
 " Default: 0
-"let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_add_preview_to_completeopt = 1
 
 " Default: 0
 "let g:ycm_autoclose_preview_window_after_completion = 0
@@ -948,12 +940,12 @@ let g:ycm_key_list_previous_completion = []
 
 " key mapping used to invoke the completion menu for semantic completion
 " Default: <C-Space>
-"let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_key_invoke_completion = '<C-Space>'
 
 " This option controls the key mapping used to show the full diagnostic text
 " when the user's cursor is on the line with the diagnostic.
 " Default: <leader>d
-"let g:ycm_key_detailed_diagnostics = '<leader>d'
+let g:ycm_key_detailed_diagnostics = '<D-Space>'
 
 " This option specifies a fallback path to a config file which is used if no
 " .ycm_extra_conf.py is found.
@@ -1036,7 +1028,7 @@ let g:clang_snippets = 0
 "
 " Eclim
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:EclimCompletionMethod = 'omnifunc'
 
@@ -1068,12 +1060,16 @@ let g:haddock_browser = "/usr/bin/firefox"
 "
 " Auto-Pairs
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:AutoPairsFlyMode = 1
+"this flymode is a little buggy
+"let g:AutoPairsFlyMode = 1
+
+"it is annoying to add <> in the autopair completion when programming
+"let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`','<':'>'}
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Project Specific Settings
 "
