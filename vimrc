@@ -49,6 +49,10 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'vim-scripts/DoxygenToolkit.vim'
 Plugin 'vim-scripts/taglist.vim'
+"Plugin 'Rip-Rip/clang_complete.git'
+Plugin 'rhysd/vim-clang-format.git'
+Plugin 'lervag/vimtex.git'
+Plugin 'Yggdroot/indentLine.git'
 
 call vundle#end()
 
@@ -570,7 +574,12 @@ endfunc
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" set leader key
+let mapleader=','
+
 " Alternative Escape key
+inoremap jk <Esc>
+
 inoremap q <Esc>
 nnoremap q <Esc>
 vnoremap q <Esc>
@@ -792,7 +801,7 @@ let g:ycm_min_num_of_chars_for_completion = 3
       "\ 'mail' : 1
       "\}
 
-" ontrols for which Vim filetypes (see :h filetype) should the YCM semantic
+" Controls for which Vim filetypes (see :h filetype) should the YCM semantic
 " completion engine be turned off
 " Default: {}
 "let g:ycm_filetype_specific_completion_to_disable = {}
@@ -851,7 +860,7 @@ let g:ycm_echo_current_diagnostic = 1
 
 " show the completion menu even when typing inside comments
 " Default: 0
-let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_comments = 0
 
 " show the completion menu even when typing inside strings
 " NOTE: turned on by default so that you can use the filename completion inside
@@ -920,7 +929,7 @@ let g:ycm_add_preview_to_completeopt = 1
 "let g:ycm_autoclose_preview_window_after_completion = 0
 
 " Default: 0
-"let g:ycm_autoclose_preview_window_after_insertion = 0
+let g:ycm_autoclose_preview_window_after_insertion = 0
 
 " maximum number of diagnostics shown to the user when errors or warnings are
 " detected
@@ -987,18 +996,18 @@ let g:ycm_confirm_extra_conf = 0
 
 " 0 - do not complete after ->, ., ::
 " 1 - automatically complete after ->, ., ::
-let g:clang_complete_auto = 0
+let g:clang_complete_auto = 1
 
 " 0 - Select nothing
 " 1 - Automatically select the first entry in the popup menu, but do not
 " insert it into the code.
 " 2 - Automatically select the first entry in the popup menu, and insert it
 " into the code.
-let g:clang_auto_select = 0
+let g:clang_auto_select = 1
 
 " 0 - do not open quickfix window on error.
 " 1 - open quickfix window on error.
-let g:clang_complete_copen=0
+let g:clang_complete_copen=1
 
 " 0 - do not highlight the warnings and errors
 " 1 - highlight the warnings and errors the same way clang does it
@@ -1010,17 +1019,20 @@ let g:clang_user_options='|| exit 0'
 let g:clang_use_library=1
 
 " tell clang_complete where to find libclang
-let g:clang_library_path = '/usr/lib/'
+let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib/'
+let g:clang_exec = '/Library/Developer/CommandLineTools/usr/bin/'
 
 " 0 - do not do some snippets magic on code placeholders like function argument,
 "     template argument, template parameters, etc.
 " 1 - do some snippets magic on code placeholders like function argument,
 "     template argument, template parameters, etc.
-let g:clang_snippets = 0
+let g:clang_snippets = 1
 
 " The snippets engine (clang_complete, ultisnips... see the snippets
 " subdirectory).
-"let g:clang_snippets_engine = "clang_complete"
+let g:clang_snippets_engine = "clang_complete"
+
+let g:clang_conceal_snippets=1
 
 
 
@@ -1065,8 +1077,49 @@ let g:haddock_browser = "/usr/bin/firefox"
 "this flymode is a little buggy
 "let g:AutoPairsFlyMode = 1
 
-"it is annoying to add <> in the autopair completion when programming
-"let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`','<':'>'}
+"it is annoying to add $$ in the autopair completion when teXing
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`','$':'$'}
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Clang-Format
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"g:clang_format#code_style is a base style.
+"llvm, google, chromium, mozilla is supported. The default value is google.
+let g:clang_format#code_style = "llvm"
+
+let g:clang_format#style_options = {
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11"}
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" IndentLine
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" defines the number of indenttabs are shown
+" default is 10
+let g:indentLine_indentLevel = 25
+
+" disable indentline except for c/cpp files
+let g:indentLine_enabled = 0
+augroup filetype
+    au FileType c,cpp,tex IndentLinesEnable
+augroup END
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
