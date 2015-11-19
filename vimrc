@@ -53,6 +53,7 @@ Plugin 'vim-scripts/taglist.vim'
 Plugin 'rhysd/vim-clang-format.git'
 Plugin 'lervag/vimtex.git'
 Plugin 'Yggdroot/indentLine.git'
+Plugin 'kien/ctrlp.vim.git'
 
 call vundle#end()
 
@@ -576,6 +577,9 @@ endfunc
 
 " set leader key
 let mapleader=','
+
+" set W to the same command as w
+command! W write
 
 " Alternative Escape key
 inoremap jk <Esc>
