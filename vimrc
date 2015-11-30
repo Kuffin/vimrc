@@ -282,12 +282,17 @@ set nofoldenable    " disable folding
 " Spelling
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" use ]s to jump to next misspelled word
+" use [s to jump to previous misspelled word
+" use z= to show alternatives
+" use zg to add a word to the dictionary
+" use zw to mark words a incorrect
 
-" Disable spellchecking by default
-set nospell
+" Enable spellchecking by default (disable it by using :set nospell)
+set spell
 
 " Set languages for spell checking
-set spelllang=en
+set spelllang=en_us
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -365,98 +370,128 @@ set concealcursor="nc"
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"recalculate the long line warning when idle and after saving
-autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
+" seperator used in the status line
+let g:statusline_sep_left='╲'
+let g:statusline_sep_right='╱'
 
-"return a warning for "long lines" where "long" is either &textwidth or 80 (if
-"no &textwidth is set)
-"
-"return '' if no long lines
-"return '[#x,my,$z] if long lines are found, were x is the number of long
-"lines, y is the median length of the long lines and z is the length of the
-"longest line
-function! StatuslineLongLineWarning()
-    if !exists("b:statusline_long_line_warning")
-        let long_line_lens = s:LongLines()
-
-        if len(long_line_lens) > 0
-            let b:statusline_long_line_warning = "[" .
-                        \ '#' . len(long_line_lens) . "," .
-                        \ 'm' . s:Median(long_line_lens) . "," .
-                        \ '$' . max(long_line_lens) . "]"
-        else
-            let b:statusline_long_line_warning = ""
-        endif
-    endif
-    return b:statusline_long_line_warning
-endfunction
-
-"return a list containing the lengths of the long lines in this buffer
-function! s:LongLines()
-    let threshold = (&tw ? &tw : 80)
-    let spaces = repeat(" ", &ts)
-
-    let long_line_lens = []
-
-    let i = 1
-    while i <= line("$")
-        let len = strlen(substitute(getline(i), '\t', spaces, 'g'))
-        if len > threshold
-            call add(long_line_lens, len)
-        endif
-        let i += 1
-    endwhile
-
-    return long_line_lens
-endfunction
-
-"find the median of the given array of numbers
-function! s:Median(nums)
-    let nums = sort(a:nums)
-    let l = len(nums)
-
-    if l % 2 == 1
-        let i = (l-1) / 2
-        return nums[i]
+function! StatuslineMode()
+    let l:mode = mode()
+    if l:mode ==# "n"
+        let l:modestr="N "
+    elseif l:mode ==# "i"
+        let l:modestr="I "
+    elseif l:mode ==# "v"
+        let l:modestr="V "
+    elseif l:mode ==# "V"
+        let l:modestr="VL"
+    elseif l:mode ==# ""
+        let l:modestr="VB"
+    elseif l:mode ==# "R"
+        let l:modestr="R "
+    elseif l:mode ==# "s"
+        let l:modestr="S "
+    elseif l:mode ==# "S"
+        let l:modestr="SL"
+    elseif l:mode ==# ""
+        let l:modestr="SB"
+    elseif l:mode ==# "Rv"
+        let l:modestr="VR"
+    elseif l:mode ==# "no"
+        let l:modestr="NO"
     else
-        return (nums[l/2] + nums[(l/2)-1]) / 2
+        let l:modestr=l:mode
     endif
+    let b:statusline_mode = "   ".l:modestr." "
+    return b:statusline_mode
 endfunction
+
+function! StatuslineFileName()
+    let b:statusline_filename = ""
+    if len(expand('%')) > 0
+        if &ft ==# "help"
+            let b:statusline_filename = "help: ".expand('%:t:r')." "
+        else
+            let b:statusline_filename = expand('%')." "
+        endif
+    endif
+    return b:statusline_filename
+endfunction
+
+function! StatuslineAttributes()
+    let b:statusline_attributes = ""
+    if &ft ==# "help"
+        return ""
+    endif
+    if &modifiable && &modified
+        let b:statusline_attributes .= "mod"
+    elseif !&modifiable
+        let b:statusline_attributes .= "umod"
+    endif
+    if &readonly
+        if len(b:statusline_attributes) > 0
+            let b:statusline_attributes .= ","
+        endif
+        let b:statusline_attributes .= "read"
+    endif
+    if len(b:statusline_attributes) > 0
+        let b:statusline_attributes .= " "
+    endif
+    return b:statusline_attributes
+endfunction
+
+function! StatuslineFileInfo()
+    let b:statusline_fileinfo = ''
+    if &ft ==# "help"
+        return ""
+    endif
+    " only display fileformat if it differs from the default
+    if len(&fileformat) > 0 && !(&fileformat ==# (split(&fileformats,','))[0])
+        let b:statusline_fileinfo .= g:statusline_sep_right." ".&fileformat." "
+    endif
+    " only display fileencoding if it differs from the internal representation
+    if len(&fileencoding) && !(&fileencoding ==# &encoding) > 0
+        let b:statusline_fileinfo .= g:statusline_sep_right." ".&fileencoding." "
+    endif
+    if len(&filetype) > 0
+        let b:statusline_fileinfo .= g:statusline_sep_right." ".&filetype." "
+    endif
+    return b:statusline_fileinfo
+endfunction
+
+function! ConditionalSep(fn, left)
+    let l:str = a:fn()
+    if len(l:str) > 0
+        if a:left
+            return " ".g:statusline_sep_left." "
+        else
+            return " ".g:statusline_sep_right." "
+        endif
+    endif
+    return ""
+endfunction
+
+highlight User1 term=reverse cterm=reverse gui=reverse guifg=#657b83 guibg=#bc120f
+highlight User2 term=reverse cterm=bold,reverse gui=bold,reverse guifg=#657b83 guibg=#004b92
 
 "
 " Set statusline
 "
-
-set statusline=
-
-"set statusline=
-"set statusline+=%#todo#  "switch to todo highlight
-"set statusline+=%F       "full filename
-"set statusline+=%#error# "switch to error highlight
-"set statusline+=%y       "filetype
-"set statusline+=%*       "switch back to normal statusline highlight
-"set statusline+=%l       "line number
-
-"set statusline+=%F                                       " full filename
-set statusline+=%{expand('%')}                        " relative path of current file
-"set statusline+=%#error#%{expand('%:f')}%* " last extension
-"set statusline+=%#error#%{expand('%:t:e')}%*                         " name of file (without extension)
-"set statusline+=%{fnamemodify(bufname('%'),':h')}/        " relative path
-"set statusline+=%{fnamemodify(bufname('%'),':t:r:s?^\\..*$??')} " filename without last extension
-"set statusline+=%#error#%{fnamemodify(bufname('%'),':t:s?^.*\\.?.?')}%* " last extension
-set statusline+=\ [
-set statusline+=%{strlen(&fenc)?&fenc:'none'},  " file encoding
-set statusline+=%{&ff}                          " file format
-set statusline+=]
-set statusline+=%y                              " filetype
-set statusline+=%h                              " help file flag
-set statusline+=%#error#%m%*                    " modified flag
-set statusline+=%r                              " read-only flag
-"set statusline+=\ \ -\ %{getcwd()}               " print CWD
-set statusline+=%=                              " left/right seperator
-set statusline+=%c,                             " cursor column
-set statusline+=%#error#%l%*/%L                           " cursor line/total lines
-set statusline+=\ %P                            " percent through file
+set statusline=%2*%{StatuslineMode()}%*
+set statusline+=%{g:statusline_sep_left}\ "
+set statusline+=%<
+set statusline+=%{StatuslineFileName()}"
+set statusline+=%{ConditionalSep(function('StatuslineFileName'),1)}
+set statusline+=%1*
+set statusline+=%{StatuslineAttributes()}
+set statusline+=%w
+set statusline+=%*
+set statusline+=%{ConditionalSep(function('StatuslineAttributes'),1)}
+set statusline+=%=
+set statusline+=%{StatuslineFileInfo()}
+set statusline+=%{g:statusline_sep_right}
+set statusline+=\ %3.l:%2v\ "
+set statusline+=%{g:statusline_sep_right}
+set statusline+=\ %3p%%\ "
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
