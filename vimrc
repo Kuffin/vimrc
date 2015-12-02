@@ -1257,7 +1257,6 @@ let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`','$':'$'}
 let g:clang_format#code_style = "llvm"
 
 let g:clang_format#style_options = {
-            \ "AllowShortIfStatementsOnASingleLine" : "false",
             \ "AllowShortBlocksOnASingleLine" : "false",
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "AllowShortFunctionsOnASingleLine" : "false",
