@@ -16,10 +16,7 @@
 " Disable compatibility mode
 set nocompatible
 
-" include global settings
-"if filereadable("/etc/vimrc")
- "source /etc/vimrc
-"endif
+
 
 
 " Enable mouse itegration
@@ -1264,10 +1261,6 @@ let g:clang_format#style_options = {
             \ "AllowShortIfStatementsOnASingleLine" : "false",
             \ "AllowShortLoopsOnASingleLine" : "false",
             \ "ColumnLimit" : "80",
-            \ "DerivePointerAlignment" : "false",
-            \ "IndentCaseLabels" : "true",
-            \ "NamespaceIndentation" : "false",
-            \ "PointerAlignment" : "PAS_Right",
             \ "Standard" : "C++11"}
 
 " map to <Leader>cf in C++ code
