@@ -1,3 +1,134 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" User-defined statusline
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" seperator used in the status line
+let g:statusline_sep_left='╲'
+let g:statusline_sep_right='╱'
+
+function! StatuslineMode()
+    let l:mode = mode()
+    if l:mode ==# "n"
+        let l:modestr="N "
+    elseif l:mode ==# "i"
+        let l:modestr="I "
+    elseif l:mode ==# "v"
+        let l:modestr="V "
+    elseif l:mode ==# "V"
+        let l:modestr="VL"
+    elseif l:mode ==# ""
+        let l:modestr="VB"
+    elseif l:mode ==# "R"
+        let l:modestr="R "
+    elseif l:mode ==# "s"
+        let l:modestr="S "
+    elseif l:mode ==# "S"
+        let l:modestr="SL"
+    elseif l:mode ==# ""
+        let l:modestr="SB"
+    elseif l:mode ==# "Rv"
+        let l:modestr="VR"
+    elseif l:mode ==# "no"
+        let l:modestr="NO"
+    else
+        let l:modestr=l:mode
+    endif
+    let b:statusline_mode = "   ".l:modestr." "
+    return b:statusline_mode
+endfunction
+
+function! StatuslineFileName()
+    let b:statusline_filename = ""
+    if len(expand('%')) > 0
+        if &ft ==# "help"
+            let b:statusline_filename = "help: ".expand('%:t:r')." "
+        else
+            let b:statusline_filename = expand('%')." "
+        endif
+    endif
+    return b:statusline_filename
+endfunction
+
+function! StatuslineAttributes()
+    let b:statusline_attributes = ""
+    if &ft ==# "help"
+        return ""
+    endif
+    if &modifiable && &modified
+        let b:statusline_attributes .= "mod"
+    elseif !&modifiable
+        let b:statusline_attributes .= "umod"
+    endif
+    if &readonly
+        if len(b:statusline_attributes) > 0
+            let b:statusline_attributes .= ","
+        endif
+        let b:statusline_attributes .= "read"
+    endif
+    if len(b:statusline_attributes) > 0
+        let b:statusline_attributes .= " "
+    endif
+    return b:statusline_attributes
+endfunction
+
+function! StatuslineFileInfo()
+    let b:statusline_fileinfo = ''
+    if &ft ==# "help"
+        return ""
+    endif
+    " only display fileformat if it differs from the default
+    if len(&fileformat) > 0 && !(&fileformat ==# (split(&fileformats,','))[0])
+        let b:statusline_fileinfo .= g:statusline_sep_right." ".&fileformat." "
+    endif
+    " only display fileencoding if it differs from the internal representation
+    if len(&fileencoding) && !(&fileencoding ==# &encoding) > 0
+        let b:statusline_fileinfo .= g:statusline_sep_right." ".&fileencoding." "
+    endif
+    if len(&filetype) > 0
+        let b:statusline_fileinfo .= g:statusline_sep_right." ".&filetype." "
+    endif
+    return b:statusline_fileinfo
+endfunction
+
+function! ConditionalSep(fn, left)
+    let l:str = a:fn()
+    if len(l:str) > 0
+        if a:left
+            return " ".g:statusline_sep_left." "
+        else
+            return " ".g:statusline_sep_right." "
+        endif
+    endif
+    return ""
+endfunction
+
+highlight User1 term=reverse cterm=reverse gui=reverse guifg=#657b83 guibg=#bc120f
+highlight User2 term=reverse cterm=bold,reverse gui=bold,reverse guifg=#657b83 guibg=#004b92
+
+"
+" Set statusline
+"
+set statusline=%2*%{StatuslineMode()}%*
+set statusline+=%{g:statusline_sep_left}\ "
+set statusline+=%<
+set statusline+=%{StatuslineFileName()}"
+set statusline+=%{ConditionalSep(function('StatuslineFileName'),1)}
+set statusline+=%1*
+set statusline+=%{StatuslineAttributes()}
+set statusline+=%w
+set statusline+=%*
+set statusline+=%{ConditionalSep(function('StatuslineAttributes'),1)}
+set statusline+=%=
+set statusline+=%{StatuslineFileInfo()}
+set statusline+=%{g:statusline_sep_right}
+set statusline+=\ %3.l:%2v\ "
+set statusline+=%{g:statusline_sep_right}
+set statusline+=\ %3p%%\ "
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
  "User-defined statusline
