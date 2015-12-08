@@ -104,8 +104,12 @@ function! ConditionalSep(fn, left)
     return ""
 endfunction
 
-highlight User1 term=reverse cterm=reverse gui=reverse guifg=#657b83 guibg=#bc120f
-highlight User2 term=reverse cterm=bold,reverse gui=bold,reverse guifg=#657b83 guibg=#004b92
+
+highlight User1 term=reverse cterm=bold,reverse gui=bold,reverse guifg=White guibg=Red
+highlight User2 term=reverse cterm=bold,reverse gui=bold,reverse guifg=Black guibg=White
+
+" default the statusline to green when entering Vim
+hi statusline guibg=Black ctermfg=8 guifg=White ctermbg=15
 
 "
 " Set statusline
