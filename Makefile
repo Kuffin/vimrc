@@ -10,3 +10,4 @@ install:
 	cp -R vim/syntax    ~/.vim
 	cp -R vim/ftdetect  ~/.vim
 	cp vimrc ~/.vimrc
+	cp gvimrc ~/.gvimrc

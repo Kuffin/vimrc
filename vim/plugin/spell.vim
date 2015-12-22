@@ -5,10 +5,10 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Disable spellchecking by default
-set nospell
+set spell
 
 " Set languages for spell checking
-set spelllang=en
+set spelllang=en_us
 
 " Toggles spell
 function! SpellToggle()

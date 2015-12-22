@@ -5,7 +5,7 @@
 
 " This line should not be removed as it ensures that various options are properly set to work with the Vim-related
 " packages.
-runtime! archlinux.vim
+"runtime! archlinux.vim
 
 " If you prefer the old-style vim functionalty, add 'runtime! vimrc_example.vim'
 "
@@ -51,6 +51,8 @@ Plugin 'rhysd/vim-clang-format.git'
 Plugin 'lervag/vimtex.git'
 Plugin 'Yggdroot/indentLine.git'
 Plugin 'kien/ctrlp.vim.git'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 call vundle#end()
 
@@ -86,8 +88,7 @@ set showcmd
 set number
 
 " Show offset
-"set relativenumber
-set norelativenumber
+set relativenumber
 
 " Show the line and column number of the cursor position, seperated by a
 " comma.
@@ -122,22 +123,9 @@ set cursorline
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Define the default width of the current window
-set columns=100
-"set winwidth=50
-
-" Define the default height of the current window
-"set winheight=100
-set lines=70
-
 " Show a vertical lign at column 80
 set colorcolumn=81
 
-" Define the minimal width for a window
-"set winminwidth=20
-
-" Define the minimal height for a window
-"set winminheight=50
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -195,7 +183,8 @@ set scrolloff=7
 " Set leading/trailing columns for the cursor when moving horizontally.
 set sidescrolloff=15
 
-" Set the amount of columns to scroll horizontally, when the end of the window is reached.
+" Set the amount of columns to scroll horizontally, when the end of the window
+" is reached.
 set sidescroll=1
 
 
@@ -230,8 +219,8 @@ set smarttab
 " insert a real tab when 'expandtab' is on, use CTRL-V <Tab>.
 set expandtab
 
-" Copy indent from current line when starting a new line (typing <CR> in Insert Mode or when using the "o" or "O"
-" command).
+" Copy indent from current line when starting a new line (typing <CR> in Insert
+" Mode or when using the "o" or "O" command).
 set autoindent
 
 
@@ -304,7 +293,7 @@ set spelllang=en_us
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Vim auto completion
+" Vim auto completion and appearance
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -337,10 +326,12 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "   torte
 "   zellner
 "
-colorscheme solarized
+colorscheme slate
 
 " set the color of the popup menu
-"highlight Pmenu guibg=brown gui=bold
+highlight Pmenu guibg=brown gui=bold
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -467,129 +458,6 @@ function! ConditionalSep(fn, left)
     return ""
 endfunction
 
-""recalculate the warnings when idle and after saving
-"autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
-"autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
-"autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
-
-""return a warning for "long lines" where "long" is either &textwidth or 80 (if
-""no &textwidth is set)
-""
-""return '' if no long lines
-""return '[#x,my,$z] if long lines are found, were x is the number of long
-""lines, y is the median length of the long lines and z is the length of the
-""longest line
-"function! StatuslineLongLineWarning()
-    "if !exists("b:statusline_long_line_warning")
-        "let long_line_lens = s:LongLines()
-
-        "if len(long_line_lens) > 0
-            "let b:statusline_long_line_warning = 'long'
-        "else
-            "let b:statusline_long_line_warning = ''
-        "endif
-    "endif
-    "return b:statusline_long_line_warning
-"endfunction
-
-""return a list containing the lengths of the long lines in this buffer
-"function! s:LongLines()
-    "let threshold = (&tw ? &tw : 80)
-    "let spaces = repeat(" ", &ts)
-
-    "let long_line_lens = []
-
-    "let i = 1
-    "while i <= line("$")
-        "let len = strlen(substitute(getline(i), '\t', spaces, 'g'))
-        "if len > threshold
-            "call add(long_line_lens, len)
-        "endif
-        "let i += 1
-    "endwhile
-
-    "return long_line_lens
-"endfunction
-
-""find the median of the given array of numbers
-"function! s:Median(nums)
-    "let nums = sort(a:nums)
-    "let l = len(nums)
-
-    "if l % 2 == 1
-        "let i = (l-1) / 2
-        "return nums[i]
-    "else
-        "return (nums[l/2] + nums[(l/2)-1]) / 2
-    "endif
-"endfunction
-
-"" return '[&et]' if &et is set wrong
-"" return '[mixed-indenting]' if spaces and tabs are used to indent
-"" return an empty string if everything is fine
-"function! StatuslineTabWarning()
-    "if !exists("b:statusline_tab_warning")
-        "let tabs = search('^\t', 'nw') != 0
-        "let spaces = search('^ ', 'nw') != 0
-
-        "if tabs && spaces
-            "let b:statusline_tab_warning =  'mixed'
-        "elseif (spaces && !&et)
-            "let b:statusline_tab_warning = "spaces"
-        "elseif (tabs && &et)
-            "let b:statusline_tab_warning = "tabs"
-        "else
-            "let b:statusline_tab_warning = ''
-        "endif
-    "endif
-    "return b:statusline_tab_warning
-"endfunction
-
-"" return '\s' if trailing white space is detected
-"" return '' otherwise
-"function! StatuslineTrailingSpaceWarning()
-    "if !exists("b:statusline_trailing_space_warning")
-        "if search('\s\+$', 'nw') != 0
-            "let b:statusline_trailing_space_warning = '\s'
-        "else
-            "let b:statusline_trailing_space_warning = ''
-        "endif
-    "endif
-    "return b:statusline_trailing_space_warning
-"endfunction
-
-"" Combine multiple statusline informations to one string
-"function! StatuslineCombined()
-    "let text = ''
-
-    "let next = StatuslineLongLineWarning()
-    "if len(next) > 0
-        "let text .= next
-    "endif
-
-    "let next = StatuslineTabWarning()
-    "if len(next) > 0
-        "if len(text) > 0
-            "let text .= ', '
-        "endif
-        "let text .= next
-    "endif
-
-    "let next = StatuslineTrailingSpaceWarning()
-    "if len(next) > 0
-        "if len(text) > 0
-            "let text .= ', '
-        "endif
-        "let text .= next
-    "endif
-
-    "if len(text) > 0
-        "let text = '' . text . ''
-    "endif
-
-    "return text
-"endfunction
-
 highlight User1 term=reverse cterm=bold,reverse gui=bold,reverse guifg=White guibg=Red
 highlight User2 term=reverse cterm=bold,reverse gui=bold,reverse guifg=Black guibg=White
 
@@ -641,7 +509,7 @@ set statusline+=\ %3p%%\ "
 "           than 'textwidth' when the insert command started, Vim does not
 "           automatically format it.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set formatoptions=t,c,q,r,l
+set formatoptions=c,q,r,l
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -663,8 +531,8 @@ function! NumberToggle()
   endif
 endfunc
 
-"autocmd InsertEnter * :set norelativenumber
-"autocmd InsertLeave * :set relativenumber
+autocmd InsertEnter * :set relativenumber
+autocmd InsertLeave * :set norelativenumber
 
 
 
@@ -708,6 +576,7 @@ endfunc
 "   Shift       -   <S-key>
 "   Alt         -   <A-key> or <M-key>
 "   Super       -   <T-key>
+"   Command     -   <D-key>
 "
 " Special keys:
 "   <BS>           Backspace
@@ -784,10 +653,6 @@ nnoremap <silent> <C-Tab> :tabnext<CR>
 " If pressing Shift+Tab in Normal Mode, cycle to the previous tab
 nnoremap <silent> <S-Tab> :tabprevious<CR>
 
-" Pressing Ctrl+P now has the same behavior as Ctrl-I had
-" FIXME: not working as expected
-"nnoremap <silent> <C-P> g,
-
 " <C-N> - create a new tab and prompt file open dialog
 nnoremap <C-N> :tabnew <C-D>
 
@@ -825,7 +690,7 @@ let Tlist_WinWidth = 80
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" LaTeX
+" VimTeX Plugin
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -852,10 +717,9 @@ let g:tex_flavor='latex'
 " s : superscript / subscript
 let g:tex_conceal=""
 
-
-let Tex_FoldedSections=""
-let Tex_FoldedEnvironments=""
-let Tex_FoldedMisc=""
+" enable/disable folding
+" default: 1
+let g:vimtex_fold_enabled = 0
 
 
 
@@ -884,7 +748,7 @@ augroup filetype
 augroup END
 
 " Set the default make program
-set makeprg=make\ -j4
+set makeprg=make\ -j2
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -932,7 +796,7 @@ augroup END
 " suggestions are triggered
 " NOTE: this option is not used for semantic completion
 " Default: 2
-let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_min_num_of_chars_for_completion = 2
 
 " minimum number of characters that a completion candidate coming from the
 " identifier completer must have to be shown in the popup menu
@@ -1227,7 +1091,7 @@ augroup filetype
 augroup END
 
 " configure browser for haskell_doc.vim
-let g:haddock_browser = "/usr/bin/firefox"
+"let g:haddock_browser = "/usr/bin/firefox"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1277,15 +1141,93 @@ nmap <Leader>C :ClangFormatAutoToggle<CR>
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:indentLine_enabled = 1
+
 " defines the number of indenttabs are shown
 " default is 10
 let g:indentLine_indentLevel = 25
 
-" disable indentline except for c/cpp files
-let g:indentLine_enabled = 0
-augroup filetype
-    au FileType c,cpp,tex IndentLinesEnable
-augroup END
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" CtrlP
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Use this option to change the mapping to invoke CtrlP in |Normal| mode
+let g:ctrlp_map = '<c-p>'
+
+" Set the default opening command to use when pressing the above mapping
+let g:ctrlp_cmd = 'CtrlP'
+
+" Change the postion, the listing order of results, the minimum and the maximum
+" heights of the match window
+" default: ''
+" Example:
+"   let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
+" The position: (default: bottom)
+"   top - show the match window at the top of the screen.
+"   bottom - show the match window at the bottom of the screen.
+" The listing order of results: (default: btt)
+"   order:ttb - from top to bottom.
+"   order:btt - from bottom to top.
+" The minimum and maximum heights:
+"   min:{n} - show minimum {n} lines (default: 1).
+"   max:{n} - show maximum {n} lines (default: 10).
+" The maximum number of results:
+"   results:{n} - list maximum {n} results (default: sync with max height).
+" Note: When a setting isn't set, its default value will be used.
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
+
+" When starting up, CtrlP sets its local working directory according to this
+" variable:
+" default: 'ra'
+" c - the directory of the current file.
+" a - like "c", but only applies when the current working directory outside of
+"     CtrlP isn't a direct ancestor of the directory of the current file.
+" r - the nearest ancestor that contains one of these directories or files:
+"     .git .hg .svn .bzr _darcs
+" w - begin finding a root from the current working directory outside of CtrlP
+"     instead of from the directory of the current file (default). Only applies
+"     when "r" is also present.
+" 0 or <empty> - disable this feature.
+" Note1: if "a" or "c" is included with "r", use the behavior of "a" or "c" (as
+"   a fallback) when a root can't be found.
+" Note2: you can use a |b:var| to set this option on a per buffer basis.
+let g:ctrlp_working_path_mode = ''
+
+" Set this to 1 if you want CtrlP to scan for dotfiles and dotdirs
+" default: 0
+let g:ctrlp_show_hidden = 1
+
+" Enable/Disable per-session caching
+" default: 1
+let g:ctrlp_use_caching = 1
+
+" Set this to 0 to enable cross-session caching by not deleting the cache files
+" upon exiting Vim
+" default: 1
+let g:ctrlp_clear_cache_on_exit = 0
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Vim Snippets
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<a-Space>"
+let g:UltiSnipsListSnippets="<a-Tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
 
 
 
@@ -1296,11 +1238,6 @@ augroup END
 " Make sure this is always at the end of your vimrc file!
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" include user-specific settings
-"if filereadable("~/.vimrc")
- "source ~/.vimrc
-"endif
 
 "include per-project settings
 if filereadable(".project.vim")

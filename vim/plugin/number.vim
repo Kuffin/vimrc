@@ -7,8 +7,8 @@ function! NumberToggle()
   endif
 endfunc
 
-autocmd InsertEnter * :set norelativenumber
-autocmd InsertLeave * :set relativenumber
+autocmd InsertEnter * :set relativenumber
+autocmd InsertLeave * :set norelativenumber
 
 " <Space> - toggle line number style
 nnoremap <silent> <Space> :call NumberToggle()<CR>
