@@ -51,6 +51,7 @@ Plugin 'rhysd/vim-clang-format.git'
 Plugin 'lervag/vimtex.git'
 Plugin 'Yggdroot/indentLine.git'
 Plugin 'kien/ctrlp.vim.git'
+"Plugin 'SirVer/ultisnips.git'
 
 call vundle#end()
 
@@ -128,7 +129,7 @@ set columns=100
 
 " Define the default height of the current window
 "set winheight=100
-set lines=70
+set lines=60
 
 " Show a vertical lign at column 80
 set colorcolumn=81
@@ -349,7 +350,7 @@ colorscheme solarized
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set conceallevel
-set conceallevel=0
+"set conceallevel=0
 
 " Set concealcursor strategy
 "
@@ -357,7 +358,7 @@ set conceallevel=0
 " v - Visual mode
 " i - Insert mode
 " c - Command line editing
-set concealcursor="nc"
+"set concealcursor="nc"
 
 
 
@@ -1287,6 +1288,28 @@ augroup filetype
     au FileType c,cpp,tex IndentLinesEnable
 augroup END
 
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" UltiSnips
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
