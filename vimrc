@@ -51,8 +51,8 @@ Plugin 'rhysd/vim-clang-format.git'
 Plugin 'lervag/vimtex.git'
 Plugin 'Yggdroot/indentLine.git'
 Plugin 'kien/ctrlp.vim.git'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
 
 call vundle#end()
 
@@ -334,7 +334,7 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "   torte
 "   zellner
 "
-colorscheme slate
+colorscheme pablo
 
 " set the color of the popup menu
 highlight Pmenu guibg=brown gui=bold
@@ -1245,10 +1245,10 @@ let g:UltiSnipsEditSplit="vertical"
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Track the engine.
+"" Track the engine.
 Plugin 'SirVer/ultisnips'
 
-" Snippets are separated from the engine. Add this if you want them:
+"" Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 
 " Trigger configuration. Do not use <tab> if you use
