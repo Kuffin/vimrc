@@ -12,43 +12,6 @@ set columns=100
 
 
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Vim auto completion and appearance
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Define a cholor scheme
-"
-" Here is a list of available color schemes
-"   blue
-"   darkblue
-"   default
-"   delek
-"   desert
-"   elflord
-"   evening
-"   koehler
-"   morning
-"   murphy
-"   pablo
-"   peachpuff
-"   ron
-"   shine
-"   slate
-"   torte
-"   zellner
-"
-colorscheme solarized
-
-" set the color of the popup menu
-"highlight Pmenu guibg=brown gui=bold
-
-source ~/.vim/plugin/statusline.vim
-
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " User-defined commands

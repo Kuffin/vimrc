@@ -51,6 +51,7 @@ Plugin 'rhysd/vim-clang-format.git'
 Plugin 'lervag/vimtex.git'
 Plugin 'Yggdroot/indentLine.git'
 Plugin 'kien/ctrlp.vim.git'
+Plugin 'jonathanfilip/vim-lucius.git'
 "Plugin 'SirVer/ultisnips'
 "Plugin 'honza/vim-snippets'
 
@@ -334,7 +335,9 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "   torte
 "   zellner
 "
-colorscheme pablo
+
+colorscheme lucius
+LuciusBlack
 
 " set the color of the popup menu
 highlight Pmenu guibg=brown gui=bold
