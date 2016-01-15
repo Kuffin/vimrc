@@ -125,12 +125,12 @@ set cursorline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define the default width of the current window
-set columns=100
+"set columns=100
 "set winwidth=50
 
 " Define the default height of the current window
 "set winheight=100
-set lines=60
+"set lines=60
 
 " Show a vertical lign at column 80
 set colorcolumn=81
