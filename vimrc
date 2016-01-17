@@ -125,12 +125,12 @@ set cursorline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Define the default width of the current window
-set columns=100
+"set columns=100
 "set winwidth=50
 
 " Define the default height of the current window
 "set winheight=100
-set lines=60
+"set lines=60
 
 " Show a vertical lign at column 80
 set colorcolumn=81
@@ -335,7 +335,6 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "   torte
 "   zellner
 "
-
 colorscheme lucius
 LuciusBlack
 
@@ -1067,7 +1066,7 @@ let g:clang_snippets = 1
 
 " The snippets engine (clang_complete, ultisnips... see the snippets
 " subdirectory).
-let g:clang_snippets_engine = "clang_complete"
+let g:clang_snippets_engine = "ultisnips"
 
 let g:clang_conceal_snippets=1
 
@@ -1226,24 +1225,6 @@ let g:ctrlp_clear_cache_on_exit = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Vim Snippets
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<a-Space>"
-let g:UltiSnipsListSnippets="<a-Tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
 " UltiSnips
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1256,7 +1237,8 @@ Plugin 'honza/vim-snippets'
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<a-Space>"
+let g:UltiSnipsListSnippets="<a-Tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
