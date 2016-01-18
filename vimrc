@@ -52,8 +52,7 @@ Plugin 'lervag/vimtex.git'
 Plugin 'Yggdroot/indentLine.git'
 Plugin 'kien/ctrlp.vim.git'
 Plugin 'jonathanfilip/vim-lucius.git'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
+Plugin 'justinmk/vim-syntax-extra.git'
 
 call vundle#end()
 
