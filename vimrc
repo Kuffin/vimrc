@@ -283,7 +283,7 @@ set nofoldenable    " disable folding
 " use zw to mark words a incorrect
 
 " Enable spellchecking by default (disable it by using :set nospell)
-set spell
+set nospell
 
 " Set languages for spell checking
 set spelllang=en_us
@@ -645,6 +645,7 @@ cnoremap <silent> <F12> <C-R>=strftime('%c')<CR>
 nnoremap w gwgw
 inoremap w <C-o>gwgw<CR>
 xnoremap w gw
+nnoremap <Leader>g gwip
 
 
 "<Space> - toggle line number style
