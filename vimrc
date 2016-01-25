@@ -616,6 +616,7 @@ let mapleader=','
 
 " set W to the same command as w
 command! W write
+command! Q quit
 
 " Alternative Escape key
 inoremap jk <Esc>

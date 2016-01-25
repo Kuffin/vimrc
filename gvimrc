@@ -86,3 +86,15 @@ set columns=100
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Project Specific Settings
+"
+" Make sure this is always at the end of your vimrc file!
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"include per-project settings
+if filereadable(".project.vim")
+  source .project.vim
+endif
