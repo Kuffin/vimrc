@@ -53,6 +53,9 @@ Plugin 'Yggdroot/indentLine.git'
 Plugin 'kien/ctrlp.vim.git'
 Plugin 'jonathanfilip/vim-lucius.git'
 Plugin 'justinmk/vim-syntax-extra.git'
+Plugin 'SirVer/ultisnips'
+"" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
 
 call vundle#end()
 
@@ -1229,12 +1232,6 @@ let g:ctrlp_clear_cache_on_exit = 0
 " UltiSnips
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"" Track the engine.
-Plugin 'SirVer/ultisnips'
-
-"" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
