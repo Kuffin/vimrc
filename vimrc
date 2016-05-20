@@ -117,6 +117,12 @@ set linebreak
 " Show the cursor line by default
 set cursorline
 
+" redraw only when we need to
+set lazyredraw
+
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+
 " Make 'word' stop at underscores. Does not affect 'Word'.
 "set iskeyword-=_
 
