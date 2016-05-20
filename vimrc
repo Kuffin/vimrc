@@ -628,6 +628,10 @@ let mapleader=','
 command! W write
 command! Q quit
 
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
 " Alternative Escape key
 inoremap jk <Esc>
 
