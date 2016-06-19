@@ -5,7 +5,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Disable spellchecking by default
-set spell
+set nospell
 
 " Set languages for spell checking
 set spelllang=en_us
