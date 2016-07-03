@@ -80,13 +80,14 @@ set background=dark
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-hi! ColorColumn term=reverse cterm=reverse
-hi! CursorLineNr term=bold,reverse cterm=bold,reverse ctermfg=6
+hi! ColorColumn term=reverse cterm=reverse gui=reverse ctermfg=darkblue guifg=darkblue
+hi! CursorLineNr term=bold,reverse cterm=bold,reverse gui=bold,reverse ctermfg=white guifg=white
+hi statusline guibg=Black ctermbg=Black guifg=White ctermfg=White
 " General colors
 "hi Cursor   guifg=NONE    guibg=#656565 gui=none
 "hi Normal   guifg=#000000 guibg=#FFFFFF gui=none
 "hi NonText   guifg=#808080 guibg=#FFFFFF gui=none
-"hi LineNr   guifg=#857b6f guibg=#FFFFFF gui=none
+"hi LineNr   guifg=green ctermfg=green
 "hi StatusLine  guifg=#000000 guibg=#FFFFFF gui=none
 "hi StatusLineNC guifg=#857b6f guibg=#FFFFFF gui=none
 "hi VertSplit  guifg=#444444 guibg=#FFFFFF gui=none

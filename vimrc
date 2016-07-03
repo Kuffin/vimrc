@@ -53,6 +53,7 @@ Plugin 'Yggdroot/indentLine.git'
 Plugin 'kien/ctrlp.vim.git'
 Plugin 'jonathanfilip/vim-lucius.git'
 Plugin 'justinmk/vim-syntax-extra.git'
+Plugin 'mgrabovsky/vim-xverif.git'
 Plugin 'SirVer/ultisnips'
 "" Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
@@ -125,6 +126,10 @@ set so=7
 
 " Make 'word' stop at underscores. Does not affect 'Word'.
 "set iskeyword-=_
+
+" Set auto reload for files changed externally
+set autoread
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -624,9 +629,13 @@ autocmd InsertLeave * :set norelativenumber
 " set leader key
 let mapleader=','
 
-" set W to the same command as w
-command! W write
-command! Q quit
+" set W and Q to the same commands as w and q
+command! -bang W w<bang>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Q q<bang>
+command! -bang Qa qa<bang>
+command! -bang QA qa<bang>
 
 " move vertically by visual line
 nnoremap j gj
@@ -756,10 +765,10 @@ let g:vimtex_fold_enabled = 0
 
 " Syntax highlighting for proverif files (SPI calculus)
 augroup filetype
-  au! BufRead,BufNewFile *.pv set filetype=tpi
-  au FileType tpi source ~/.vim/syntax/tpi.vim
+  au! BufRead,BufNewFile *.pv set filetype=proverif-pv
+  au! BufRead,BufNewFile *.pv set syntax=proverif-pv
+  au FileType proverif source /Users/wiamrachid/.vim/vundle/vim-xverif/syntax/proverif-pv.vim
 augroup END
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -1010,7 +1019,7 @@ let g:ycm_key_detailed_diagnostics = '<D-Space>'
 " This option specifies a fallback path to a config file which is used if no
 " .ycm_extra_conf.py is found.
 " Default: ''
-"let g:ycm_global_ycm_extra_conf = ''
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 " When this option is set to 1 YCM will ask once per .ycm_extra_conf.py file if
 " it is safe to be loaded. This is to prevent execution of malicious code from a
@@ -1023,7 +1032,7 @@ let g:ycm_confirm_extra_conf = 0
 " Setting this option will force YCM to always interpret relative paths as being
 " relative to Vim's current working directory.
 " Default: 0
-"let g:ycm_filepath_completion_use_working_dir = 0
+let g:ycm_filepath_completion_use_working_dir = 1
 "let g:ycm_semantic_triggers =  {
   "\   'c' : ['->', '.'],
   "\   'objc' : ['->', '.'],

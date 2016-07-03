@@ -105,11 +105,9 @@ function! ConditionalSep(fn, left)
 endfunction
 
 
-highlight User1 term=reverse cterm=bold,reverse gui=bold,reverse guifg=White guibg=Red
-highlight User2 term=reverse cterm=bold,reverse gui=bold,reverse guifg=Black guibg=White
+highlight User1 term=reverse cterm=bold,reverse gui=bold,reverse guifg=Black guibg=Red ctermfg=Black ctermbg=red
+highlight User2 term=reverse cterm=bold,reverse gui=bold,reverse guifg=darkblue guibg=white ctermfg=darkblue ctermbg=white
 
-" default the statusline to green when entering Vim
-hi statusline guibg=Black ctermfg=8 guifg=White ctermbg=15
 
 "
 " Set statusline
@@ -268,7 +266,7 @@ set statusline+=\ %3p%%\ "
 "hi User2 term=bold,reverse cterm=bold,reverse ctermbg=1 ctermfg=6
 "hi User3 term=bold cterm=bold ctermfg=0 ctermbg=3
 
-"set statusline=\ \ 
+"set statusline=\ \
 "set statusline+=%{expand('%')}                   relative path of current file
 "set statusline+=\ [
 "set statusline+=%{strlen(&fenc)?&fenc:'none'},   file encoding
@@ -279,10 +277,10 @@ set statusline+=\ %3p%%\ "
 "set statusline+=%r                               read-only flag
 "set statusline+=\ \ -\ %{getcwd()}              print CWD
 "set statusline+=%=                              left/right seperator
-"set statusline+=\ -\ 
+"set statusline+=\ -\
 "set statusline+=%c,                              cursor column
 "set statusline+=%1*%l%*/%L                       cursor line/total lines
 "set statusline+=\ %P                             percent through file
-"set statusline+=\ 
+"set statusline+=\
 "set statusline+=%2*%m%*                          modified flag
 "set statusline+=\ %3*%{StatuslineCombined()}%*
