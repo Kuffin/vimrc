@@ -52,6 +52,7 @@ Plugin 'lervag/vimtex.git'
 Plugin 'Yggdroot/indentLine.git'
 Plugin 'kien/ctrlp.vim.git'
 Plugin 'jonathanfilip/vim-lucius.git'
+Plugin 'sickill/vim-sunburst.git'
 Plugin 'justinmk/vim-syntax-extra.git'
 Plugin 'mgrabovsky/vim-xverif.git'
 Plugin 'SirVer/ultisnips'
@@ -650,6 +651,10 @@ vnoremap q <Esc>
 cnoremap q <Esc>
 onoremap q <Esc>
 
+" C-enter - should open ctags function lookup in a new tab
+nmap <C-Enter> <C-w><C-]><C-w>T
+
+
 " <F2>  - NERD Tree
 nnoremap <silent> <F2> :NERDTree<CR>
 
@@ -1103,6 +1108,14 @@ let g:clang_conceal_snippets=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:EclimCompletionMethod = 'omnifunc'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Arduino
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au! BufRead,BufNewFile *.ino set filetype=cpp
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
