@@ -349,7 +349,9 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "   slate
 "   torte
 "   zellner
-"
+
+" set the color defintion to 256 different colors
+set t_Co=256
 colorscheme lucius
 LuciusBlack
 
@@ -374,6 +376,17 @@ highlight Pmenu guibg=brown gui=bold
 " i - Insert mode
 " c - Command line editing
 "set concealcursor="nc"
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Set splitting options
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set splitbelow
+set splitright
 
 
 
@@ -634,6 +647,8 @@ let mapleader=','
 command! -bang W w<bang>
 command! -bang Wa wa<bang>
 command! -bang WA wa<bang>
+command! -bang Wq wq<bang>
+command! -bang WQ wq<bang>
 command! -bang Q q<bang>
 command! -bang Qa qa<bang>
 command! -bang QA qa<bang>
@@ -641,6 +656,12 @@ command! -bang QA qa<bang>
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+
+" move between splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " Alternative Escape key
 inoremap jk <Esc>
