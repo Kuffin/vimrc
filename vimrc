@@ -19,9 +19,6 @@ set nocompatible
 
 
 
-" Enable mouse itegration
-set mouse=a
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -131,6 +128,12 @@ set so=7
 " Set auto reload for files changed externally
 set autoread
 
+" Enable mouse itegration
+set mouse=a
+
+" Set default directory for swapfiles
+set directory=~/.vim/swapfiles//
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -176,12 +179,6 @@ set list
 " Make completion case-insensitive
 set wildignorecase
 
-" Show the cursor line by default
-set cursorline
-
-" Make 'word' stop at underscores. Does not affect 'Word'.
-"set iskeyword-=_
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -210,10 +207,6 @@ set sidescrolloff=15
 " Set the amount of columns to scroll horizontally, when the end of the window
 " is reached.
 set sidescroll=1
-
-
-" Make the wild menu auto complete to the longest substring of all matches
-set wildmode=list:longest
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -385,7 +378,6 @@ highlight Pmenu guibg=brown gui=bold
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set splitbelow
 set splitright
 
 
@@ -527,7 +519,6 @@ set statusline+=\ %3p%%\ "
 "
 " Format options
 "
-"{{{
 " This is a sequence of letters which describes how automatic formatting is
 " to be done.
 "
@@ -578,7 +569,6 @@ autocmd InsertLeave * :set norelativenumber
 "
 " Custom keymaps
 "
-"{{{
 " {cmd} {attr} {lhs} {rhs}
 "
 " {cmd} : of the form <?>map, <?>noremap or <?>unmap,
@@ -636,7 +626,6 @@ autocmd InsertLeave * :set norelativenumber
 "   <End>          End
 "   <PageUp>       page-up
 "   <PageDown>     page-down
-"}}}
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -671,9 +660,6 @@ nnoremap q <Esc>
 vnoremap q <Esc>
 cnoremap q <Esc>
 onoremap q <Esc>
-
-" C-enter - should open ctags function lookup in a new tab
-nmap <C-Enter> <C-w><C-]><C-w>T
 
 
 " <F2>  - NERD Tree
@@ -808,7 +794,17 @@ augroup filetype
 augroup END
 
 " Set the default make program
-set makeprg=make\ -j2
+set makeprg=make
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" cindent
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+augroup filetype
+  au! BufNewFile,BufRead *.c,*.cpp,*.cc,*.h,*.hpp,*.java,Makefile,*.ll set cindent
+augroup END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -817,13 +813,7 @@ set makeprg=make\ -j2
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-augroup filetype
-  au! BufNewFile,BufRead *.c,*.cpp,*.cc,*.h,*.hpp set cindent
-augroup END
-
-"
 " Allows to jump to the alternate file, e.g. the header file for a C file
-"
 let g:alternateNoDefaultAlternate = 1
 let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,hpp,h"
 
@@ -834,8 +824,7 @@ let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,hpp,h"
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Enable syntax highlighting for LLVM files. To use, copy
-" utils/vim/llvm.vim to ~/.vim/syntax .
+" Enable syntax highlighting for LLVM files.
 augroup filetype
   au! BufRead,BufNewFile *.ll set filetype=llvm
 augroup END
