@@ -9,6 +9,7 @@ all:
 	cp -R vim/ftdetect  ~/.vim
 	cp vimrc ~/.vimrc
 	cp gvimrc ~/.gvimrc
+	mkdir -p ~/.vim/swapfiles
 
 install:
 	cp proverif-pv.vim ../../.vim/vundle/vim-xverif/syntax/proverif-pv.vim
