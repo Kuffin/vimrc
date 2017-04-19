@@ -707,8 +707,8 @@ nnoremap n <C-W>v<C-W>l:edit <C-D>
 
 " Open the alternate file
 nnoremap <silent> ,ff :FSHere<CR>
-nnoremap <silent> ,fh <C-W>v:FSHere<CR>
-nnoremap <silent> ,fk <C-W>s:FSHere<CR>
+nnoremap <silent> ,fh <C-W>v<C-W>h:FSHere<CR>
+nnoremap <silent> ,fk <C-W>s<C-W>k:FSHere<CR>
 nnoremap <silent> ,fj <C-W>s<C-W>j:FSHere<CR>
 nnoremap <silent> ,fl <C-W>v<C-W>l:FSHere<CR>
 
